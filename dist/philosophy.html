@@ -142,7 +142,7 @@
             </button>
         </div>
         <!-- Mobile Dropdown Menu -->
-        <div class="hidden flex-col gap-4 mt-4 pb-4 border-t border-saffron-gold/10 md:hidden" id="mobile-nav">
+        <div class="hidden flex-col gap-4 absolute top-full left-0 w-full bg-obsidian/95 backdrop-blur-md border-b border-saffron-gold/10 px-gutter py-6 md:hidden shadow-2xl" id="mobile-nav">
             <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="index.html">Home</a>
             <a class="font-body-md text-body-md uppercase tracking-widest text-saffron-gold hover:text-saffron-gold transition-colors font-bold underline underline-offset-8" href="philosophy.html">Heritage</a>
             <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="menu.html">Menu</a>
@@ -282,6 +282,13 @@
                 mobileNav.classList.toggle('hidden');
                 mobileNav.classList.toggle('flex');
             });
+            // Close mobile menu when clicking a link
+            mobileNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileNav.classList.add('hidden');
+                    mobileNav.classList.remove('flex');
+                });
+            });
         }
 
         // Navigation scroll effect
@@ -296,15 +303,18 @@
 
         // Scroll reveal animation
         const revealElements = document.querySelectorAll('.scroll-reveal');
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        revealElements.forEach(el => revealObserver.observe(el));
+        if ('IntersectionObserver' in window) {
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.02 });
+            revealElements.forEach(el => revealObserver.observe(el));
+        } else {
+            revealElements.forEach(el => el.classList.add('active'));
+        }
 
 
 
