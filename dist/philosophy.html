@@ -4,7 +4,8 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Kaiz Kitchen | Our Philosophy</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="icon" type="image/png" href="/assets/logo-DAtJeMS8.png" />
+    <script src="tailwind.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <script id="tailwind-config">
@@ -65,8 +66,18 @@
     </script>
     <style>
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-        .scroll-reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
-        .scroll-reveal.active { opacity: 1; transform: translateY(0); }
+        body {
+            background-color: #0D0D0D;
+            background-image: 
+                linear-gradient(rgba(245, 193, 7, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(245, 193, 7, 0.04) 1px, transparent 1px),
+                radial-gradient(rgba(245, 193, 7, 0.05) 1.5px, transparent 1.5px);
+            background-size: 80px 80px, 80px 80px, 20px 20px;
+            background-position: -1px -1px, -1px -1px, 10px 10px;
+        }
+        .scroll-reveal { opacity: 0; transform: translateY(50px) scale(0.95); filter: blur(5px); transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .scroll-reveal.active { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+
         .nav-scrolled { background-color: #0D0D0D !important; border-bottom: 1px solid rgba(245, 193, 7, 0.1); }
         .menu-card-glow:hover { box-shadow: 0 0 20px rgba(245, 193, 7, 0.15); border-color: #F5C107 !important; }
         .line-draw { height: 2px; width: 0; background: #F5C107; transition: width 0.8s ease-in-out; }
@@ -99,19 +110,28 @@
             90% { opacity: 0.3; }
             100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
         }
+
+        /* Text separation & contrast utilities */
+        .text-shadow-premium {
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.95), 0 2px 4px rgba(0, 0, 0, 0.9);
+        }
+        .text-shadow-gold {
+            text-shadow: 0 4px 12px rgba(245, 193, 7, 0.25), 0 2px 4px rgba(0, 0, 0, 0.9);
+        }
     </style>
 </head>
 <body class="bg-obsidian text-on-surface font-body-md overflow-x-hidden">
     <!-- WebGL Background -->
-    <canvas id="shader-bg"></canvas>
+    <!-- WebGL Background Removed -->
     <!-- Aromatic Particles Container -->
     <div id="particle-container"></div>
     
     <!-- Top Navigation -->
     <nav class="fixed top-0 w-full z-50 transition-all duration-300 bg-transparent backdrop-blur-md border-b border-saffron-gold/10 px-gutter py-base" id="top-nav">
         <div class="max-w-container-max mx-auto flex justify-between items-center">
-            <a class="font-headline-sm text-headline-sm text-saffron-gold italic" href="index.html">Kaiz Kitchen</a>
+            <a href="index.html" class="flex items-center"><img src="/assets/logo-DAtJeMS8.png" alt="Kaiz Kitchen Logo" class="h-12 md:h-16 w-auto object-contain" /></a>
             <div class="hidden md:flex gap-gutter items-center">
+                <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="index.html">Home</a>
                 <a class="font-body-md text-body-md uppercase tracking-widest text-saffron-gold hover:text-saffron-gold transition-colors font-bold underline underline-offset-8" href="philosophy.html">Heritage</a>
                 <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="menu.html">Menu</a>
                 <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="index.html#catering">Catering</a>
@@ -123,7 +143,8 @@
         </div>
         <!-- Mobile Dropdown Menu -->
         <div class="hidden flex-col gap-4 mt-4 pb-4 border-t border-saffron-gold/10 md:hidden" id="mobile-nav">
-            <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="philosophy.html">Heritage</a>
+            <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="index.html">Home</a>
+            <a class="font-body-md text-body-md uppercase tracking-widest text-saffron-gold hover:text-saffron-gold transition-colors font-bold underline underline-offset-8" href="philosophy.html">Heritage</a>
             <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="menu.html">Menu</a>
             <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="index.html#catering">Catering</a>
             <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="index.html#branches">Branches</a>
@@ -131,15 +152,16 @@
     </nav>
     
     <!-- Hero Section -->
-    <section class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+    <section class="relative h-[60vh] flex items-center justify-center overflow-hidden bg-obsidian">
         <div class="absolute inset-0 z-0 overflow-hidden">
-            <img alt="Kaiz Heritage Hero" class="w-full h-full object-cover opacity-40" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcvgVOauIb0dHbpp8OsNOjbRG3xvC5New-DYsa0d8l5qAHMP9fiEb9gEXa88mB3iT_L59oDQnNwLeprAg9ADQvLZXZkyloJ9bnadgCWC6LdAXf0QXeKAWjArlFovnDhSnGeJ58R2M-Dv6n9J3uNLq7VveZdjRG2n0tvPhYFxIa7vL9JqOH3dc6_u_rbIdANxVpERr4PPW6qZKRtVpEreBD5sNmbW40wG5Un-mH8AdllLyDmaYLPhVdWvCVlPhzRTff1IgGS39fz-Lp"/>
-            <div class="absolute inset-0 bg-gradient-to-b from-obsidian/40 via-transparent to-obsidian"></div>
+            <img alt="Kaiz Heritage Hero" class="w-full h-full object-cover opacity-35" src="/assets/img_98d3af4d-CYPnNOD7.jpg"/>
+            <div class="absolute inset-0 bg-gradient-to-b from-obsidian/85 via-obsidian/45 to-obsidian"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(13,13,13,0.85)_0%,rgba(13,13,13,0.3)_60%,transparent_100%)]"></div>
         </div>
         <div class="relative z-20 text-center px-gutter">
-            <span class="font-label-caps text-label-caps text-saffron-gold mb-4 block">THE GENESIS</span>
-            <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-pearl-white">Our Heritage &amp; Process</h1>
-            <p class="font-body-lg text-body-lg text-muted-text max-w-xl mx-auto mt-4">Nurtured on local soil, cooked by local hands. The timeline and values that define our legacy.</p>
+            <span class="font-label-caps text-label-caps text-saffron-gold mb-4 block text-shadow-gold">THE GENESIS</span>
+            <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-pearl-white text-shadow-premium">Our Heritage &amp; Process</h1>
+            <p class="font-body-lg text-body-lg text-muted-text max-w-xl mx-auto mt-4 text-shadow-premium">Nurtured on local soil, cooked by local hands. The timeline and values that define our legacy.</p>
         </div>
     </section>
 
@@ -216,7 +238,7 @@
                         <p class="text-muted-text text-sm leading-relaxed">We seal our large copper vessels with dough rings. This locks in steam and volatile oil molecules to flavor every grain.</p>
                     </div>
                     <div class="flex-1 rounded-lg overflow-hidden h-40 md:h-full relative">
-                        <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" alt="Process details" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHg7ZV4kohMfAR7tiMDHR0vQ3gQlw4U4mT-xx5uhxrirc4oTV5ZNBG7Ro8yF1spawrT2MNOS5WcukhRTRs3NdDhL-0T57Qeh16ZMaetuwqxoBOgeAFll9a1pW0cvaxT5bDicpdxVPViJqkMdSkkDG1wL82kZK3Kfjbk1HVur26JoUmqQJ4wLwvYpG9yhogEF09vqwsLVMXTaf0Y_41OH-19HKy-EKZjn9Q6A2WJhKx6rBj42_J4sL5lOFUhphXkUxWpRGqg_-bqluZ"/>
+                        <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" alt="Process details" src="/assets/img_eb18b163-Dtgq1mOQ.jpg"/>
                     </div>
                 </div>
             </div>
@@ -226,7 +248,7 @@
     <!-- Footer -->
     <footer class="bg-obsidian py-section-padding-desktop border-t-2 border-saffron-gold">
         <div class="max-w-container-max mx-auto px-gutter flex flex-col items-center gap-base text-center">
-            <h2 class="font-headline-sm text-headline-sm text-saffron-gold italic mb-4">Kaiz Kitchen</h2>
+            <img src="/assets/logo-DAtJeMS8.png" alt="Kaiz Kitchen Logo" class="h-24 w-auto object-contain mb-4 mx-auto" />
             <div class="flex flex-wrap justify-center gap-gutter mb-8">
                 <a class="font-body-md text-muted-text hover:text-pearl-white transition-colors" href="#">Privacy Policy</a>
                 <a class="font-body-md text-muted-text hover:text-pearl-white transition-colors" href="#">Terms of Service</a>
@@ -244,7 +266,7 @@
     </footer>
 
     <!-- Floating WhatsApp -->
-    <a class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform" href="https://wa.me/918606440057" target="_blank">
+    <a class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform" href="https://wa.me/917907267371" target="_blank">
         <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
             <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.66.986 3.292 1.48 4.961 1.48 5.384 0 9.75-4.372 9.752-9.756.002-2.607-1.012-5.059-2.859-6.907C16.599 2.124 14.137.893 11.53.893 6.152.893 1.782 5.266 1.78 10.652c-.001 1.77.462 3.498 1.402 5.078l-.361 1.321 1.348-.353 3.878 1.456zM17.13 14.86c-.29-.145-1.72-.85-1.985-.947-.268-.098-.463-.146-.659.145-.195.29-.757.947-.927 1.14-.17.194-.34.217-.63.072-.29-.145-1.226-.452-2.335-1.44-.863-.77-1.446-1.722-1.616-2.013-.17-.29-.018-.447.127-.59.13-.13.29-.34.435-.51.145-.17.193-.29.29-.485.097-.193.048-.363-.024-.51-.07-.145-.658-1.586-.902-2.17-.238-.574-.48-.495-.659-.504-.17-.008-.364-.01-.557-.01-.193 0-.507.072-.772.36-.265.29-1.01 1.01-1.01 2.458 0 1.448 1.054 2.85 1.198 3.04.145.195 2.076 3.17 5.028 4.444.702.302 1.25.483 1.677.619.706.224 1.348.193 1.856.117.564-.084 1.72-.702 1.962-1.38.242-.678.242-1.258.17-1.38-.072-.12-.268-.194-.558-.34z"/>
         </svg>

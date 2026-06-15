@@ -4,7 +4,8 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Kaiz Kitchen | Thrissur's Most Aromatic Legacy</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="icon" type="image/png" href="/assets/logo-DAtJeMS8.png" />
+    <script src="tailwind.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 
@@ -78,8 +79,8 @@
                         "base": "8px",
                         "gutter": "24px",
                         "container-max": "1280px",
-                        "section-padding-mobile": "64px",
-                        "section-padding-desktop": "120px"
+                        "section-padding-mobile": "48px",
+                        "section-padding-desktop": "80px"
                     },
                     "fontFamily": {
                         "price-display": ["Plus Jakarta Sans"],
@@ -106,10 +107,19 @@
         }
     </script>
     <style>
+        body {
+            background-color: #0D0D0D;
+            background-image: 
+                linear-gradient(rgba(245, 193, 7, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(245, 193, 7, 0.04) 1px, transparent 1px),
+                radial-gradient(rgba(245, 193, 7, 0.05) 1.5px, transparent 1.5px);
+            background-size: 80px 80px, 80px 80px, 20px 20px;
+            background-position: -1px -1px, -1px -1px, 10px 10px;
+        }
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
         .gold-dust { position: absolute; pointer-events: none; border-radius: 50%; background: #F5C107; opacity: 0.3; filter: blur(1px); z-index: 5; }
-        .scroll-reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
-        .scroll-reveal.active { opacity: 1; transform: translateY(0); }
+        .scroll-reveal { opacity: 0; transform: translateY(50px) scale(0.95); filter: blur(5px); transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .scroll-reveal.active { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
         .nav-scrolled { background-color: #0D0D0D !important; border-bottom: 1px solid rgba(245, 193, 7, 0.1); }
         .menu-card-glow:hover { box-shadow: 0 0 20px rgba(245, 193, 7, 0.15); border-color: #F5C107 !important; }
         .line-draw { height: 2px; width: 0; background: #F5C107; transition: width 0.8s ease-in-out; }
@@ -177,6 +187,61 @@
             90% { opacity: 0.3; }
             100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
         }
+
+        /* Staggered Fade Up for Hero Text */
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .hero-text-anim {
+            opacity: 0;
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .hero-anim-1 { animation-delay: 0.2s; }
+        .hero-anim-2 { animation-delay: 0.4s; }
+        .hero-anim-3 { animation-delay: 0.6s; }
+        .hero-anim-4 { animation-delay: 0.8s; }
+
+        /* Professional Ken Burns Effect for Background */
+        @keyframes bgScalePan {
+            0% { transform: scale(1) translate(0, 0); }
+            50% { transform: scale(1.1) translate(-1%, -1%); }
+            100% { transform: scale(1) translate(0, 0); }
+        }
+        .hero-bg-anim {
+            animation: bgScalePan 30s ease-in-out infinite;
+            will-change: transform;
+        }
+
+        /* Shine effect on primary button */
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
+        }
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shine::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
+            transform: skewX(-20deg);
+            animation: shine 4s infinite;
+        }
+
+
+
+        /* Text separation & contrast utilities */
+        .text-shadow-premium {
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.95), 0 2px 4px rgba(0, 0, 0, 0.9);
+        }
+        .text-shadow-gold {
+            text-shadow: 0 4px 12px rgba(245, 193, 7, 0.25), 0 2px 4px rgba(0, 0, 0, 0.9);
+        }
     </style>
 </head>
 <body class="bg-obsidian text-on-surface font-body-md overflow-x-hidden">
@@ -185,8 +250,9 @@
     <!-- Top Navigation -->
     <nav class="fixed top-0 w-full z-50 transition-all duration-300 bg-transparent backdrop-blur-md border-b border-saffron-gold/10 px-gutter py-base" id="top-nav">
         <div class="max-w-container-max mx-auto flex justify-between items-center">
-            <a class="font-headline-sm text-headline-sm text-saffron-gold italic" href="index.html">Kaiz Kitchen</a>
+            <a href="index.html" class="flex items-center"><img src="/assets/logo-DAtJeMS8.png" alt="Kaiz Kitchen Logo" class="h-12 md:h-16 w-auto object-contain" /></a>
             <div class="hidden md:flex gap-gutter items-center">
+                <a class="font-body-md text-body-md uppercase tracking-widest text-saffron-gold hover:text-saffron-gold transition-colors font-bold underline underline-offset-8" href="index.html">Home</a>
                 <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="philosophy.html">Heritage</a>
                 <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="menu.html">Menu</a>
                 <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="#catering">Catering</a>
@@ -198,6 +264,7 @@
         </div>
         <!-- Mobile Dropdown Menu -->
         <div class="hidden flex-col gap-4 mt-4 pb-4 border-t border-saffron-gold/10 md:hidden" id="mobile-nav">
+            <a class="font-body-md text-body-md uppercase tracking-widest text-saffron-gold hover:text-saffron-gold transition-colors font-bold underline underline-offset-8" href="index.html">Home</a>
             <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="philosophy.html">Heritage</a>
             <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="menu.html">Menu</a>
             <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="#catering">Catering</a>
@@ -206,21 +273,22 @@
     </nav>
     
     <!-- Hero Section -->
-    <section class="relative hero-ios flex items-center justify-center overflow-hidden">
+    <section class="relative hero-ios flex items-center justify-center overflow-hidden bg-obsidian">
         <!-- WebGL Background -->
-        <canvas id="shader-bg"></canvas>
+    <!-- WebGL Background Removed -->
         <!-- Aromatic Particles Container -->
         <div id="particle-container"></div>
         <div class="absolute inset-0 z-0 overflow-hidden">
-            <img alt="Cinematic Biriyani" class="w-full h-full object-cover opacity-60 hero-img" src="/assets/KAIZ%20KITCHEN%20HERO-DLTiOb9F.png?v=2"/>
-            <div class="absolute inset-0 bg-gradient-to-b from-obsidian/40 via-transparent to-obsidian"></div>
+            <img alt="Cinematic Biriyani" class="w-full h-full object-cover opacity-50 hero-img hero-bg-anim" src="/assets/KAIZ%20KITCHEN%20HERO-DLTiOb9F.png?v=2"/>
+            <div class="absolute inset-0 bg-gradient-to-b from-obsidian/85 via-obsidian/45 to-obsidian"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(13,13,13,0.85)_0%,rgba(13,13,13,0.3)_60%,transparent_100%)]"></div>
         </div>
         <div class="relative z-20 text-center px-gutter max-w-4xl">
-            <span class="font-label-caps text-label-caps text-saffron-gold mb-4 block">EST. THRISSUR · SINCE 2018</span>
-            <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-pearl-white mb-6">Thrissur's Most Aromatic Legacy</h1>
-            <p class="font-body-lg text-body-lg text-muted-text mb-10 max-w-2xl mx-auto">Malabar Dum Biriyani crafted with heritage spices and slow-cooked to perfection. Where every grain tells a story of royalty.</p>
-            <div class="flex flex-col md:flex-row gap-4 justify-center">
-                <a class="bg-saffron-gold text-obsidian px-10 py-4 font-label-caps text-label-caps hover:scale-105 transition-transform" href="#branches">Find Your Branch</a>
+            <span class="font-label-caps text-label-caps text-saffron-gold mb-4 block hero-text-anim hero-anim-1 text-shadow-gold">EST. THRISSUR · SINCE 2018</span>
+            <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-pearl-white mb-6 hero-text-anim hero-anim-2 text-shadow-premium">Thrissur's Most Aromatic Legacy</h1>
+            <p class="font-body-lg text-body-lg text-muted-text mb-10 max-w-2xl mx-auto hero-text-anim hero-anim-3 text-shadow-premium">Malabar Dum Biriyani crafted with heritage spices and slow-cooked to perfection. Where every grain tells a story of royalty.</p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center hero-text-anim hero-anim-4">
+                <a class="bg-saffron-gold text-obsidian px-10 py-4 font-label-caps text-label-caps hover:scale-105 transition-transform btn-shine" href="#branches">Find Your Branch</a>
                 <a class="border border-saffron-gold text-saffron-gold px-10 py-4 font-label-caps text-label-caps hover:bg-saffron-gold/10 transition-colors" href="#catering">Book Catering</a>
             </div>
         </div>
@@ -230,7 +298,7 @@
     </section>
 
     <!-- Brand Story Section -->
-    <section class="py-section-padding-desktop bg-obsidian relative" id="heritage">
+    <section class="py-section-padding-desktop bg-transparent relative" id="heritage">
         <div class="max-w-container-max mx-auto px-gutter grid md:grid-cols-2 gap-section-padding-mobile items-center">
             <div class="relative">
                 <div class="absolute left-0 top-0 bottom-0 w-px bg-saffron-gold/30"></div>
@@ -255,15 +323,13 @@
             <div class="scroll-reveal">
                 <h2 class="font-headline-md text-headline-md text-pearl-white mb-8 italic">"The aromatic flavored biriyani which can take you back to a memorable moment."</h2>
                 <p class="font-body-lg text-body-lg text-muted-text mb-12">At Kaiz Kitchen, we don't just cook; we curate an experience. Every spice is hand-selected, every grain of rice is nurtured, and every pot is sealed with a promise of authenticity. Our heritage is rooted in the narrow streets of Malabar, brought to life in the vibrant landscape of Thrissur.</p>
-                <div class="w-full aspect-[4/5] relative overflow-hidden rounded-lg">
-                    <img alt="Chef with Dum" class="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-[1.5s]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcvgVOauIb0dHbpp8OsNOjbRG3xvC5New-DYsa0d8l5qAHMP9fiEb9gEXa88mB3iT_L59oDQnNwLeprAg9ADQvLZXZkyloJ9bnadgCWC6LdAXf0QXeKAWjArlFovnDhSnGeJ58R2M-Dv6n9J3uNLq7VveZdjRG2n0tvPhYFxIa7vL9JqOH3dc6_u_rbIdANxVpERr4PPW6qZKRtVpEreBD5sNmbW40wG5Un-mH8AdllLyDmaYLPhVdWvCVlPhzRTff1IgGS39fz-Lp"/>
-                </div>
+                
             </div>
         </div>
     </section>
 
     <!-- Signature Menu Section -->
-    <section class="py-section-padding-desktop bg-obsidian text-pearl-white overflow-hidden" id="menu">
+    <section class="py-section-padding-desktop bg-transparent text-pearl-white overflow-hidden" id="menu">
         <div class="max-w-container-max mx-auto px-gutter">
             <div class="text-center mb-20 scroll-reveal">
                 <span class="font-label-caps text-label-caps text-saffron-gold block mb-4">CURATED SELECTIONS</span>
@@ -271,40 +337,38 @@
                 <div class="line-draw mx-auto"></div>
                 <p class="mt-8 font-body-md text-body-md max-w-xl mx-auto italic text-muted-text">Unlimited rice included with every full biriyani order. Experience the true scale of Malabar hospitality.</p>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="bg-charcoal-surface p-8 rounded-none border-t-2 border-saffron-gold/20 flex flex-col justify-between menu-card-glow transition-all duration-300">
-                    <div>
-                        <div class="flex justify-between items-start mb-6">
-                            <h3 class="font-headline-sm text-headline-sm text-pearl-white italic leading-none">Chicken Biriyani</h3>
-                            <span class="text-saffron-gold font-price-display text-price-display">₹150</span>
-                        </div>
-                        <p class="text-muted-text font-body-md text-sm mb-6">Slow-cooked succulent chicken pieces layered with aromatic long-grain rice and our secret spice blend.</p>
+            <div class="max-w-4xl mx-auto space-y-12">
+                <!-- Item 1 -->
+                <div class="flex flex-col gap-2 group cursor-pointer" onclick="window.location.href='menu.html'">
+                    <div class="flex items-end justify-between gap-4">
+                        <h3 class="font-headline-sm text-2xl md:text-3xl text-pearl-white italic leading-none group-hover:text-saffron-gold transition-colors">Chicken Biriyani</h3>
+                        <div class="flex-grow border-b-2 border-dotted border-saffron-gold/30 mb-1.5 md:mb-2 transition-all group-hover:border-saffron-gold/70"></div>
+                        <span class="text-saffron-gold font-price-display text-2xl md:text-3xl">₹150</span>
                     </div>
-                    <button class="w-full py-3 border border-saffron-gold/30 text-saffron-gold font-label-caps text-xs hover:bg-saffron-gold hover:text-obsidian transition-colors" onclick="window.location.href='menu.html'">DETAILS</button>
+                    <p class="text-muted-text font-body-md text-sm md:text-base max-w-2xl group-hover:text-pearl-white/80 transition-colors">Slow-cooked succulent chicken pieces layered with aromatic long-grain rice and our secret spice blend.</p>
                 </div>
-                <!-- Card 2 (Signature) -->
-                <div class="bg-charcoal-surface p-8 rounded-none border-t-4 border-saffron-gold flex flex-col justify-between menu-card-glow transition-all duration-300 relative scale-105 z-10">
-                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-saffron-gold text-obsidian px-4 py-1 font-label-caps text-[10px] font-extrabold uppercase">Signature Must-Try</div>
-                    <div>
-                        <div class="flex justify-between items-start mb-6">
-                            <h3 class="font-headline-sm text-headline-sm text-pearl-white italic leading-none">Chicken Kondattam</h3>
-                            <span class="text-saffron-gold font-price-display text-price-display">₹80</span>
+                
+                <!-- Item 2 (Signature) -->
+                <div class="flex flex-col gap-2 group cursor-pointer" onclick="window.location.href='menu.html#specialties'">
+                    <div class="flex items-end justify-between gap-4">
+                        <div class="flex items-baseline gap-3">
+                            <h3 class="font-headline-sm text-2xl md:text-3xl text-saffron-gold italic leading-none drop-shadow-[0_0_8px_rgba(245,193,7,0.3)]">Chicken Kondattam</h3>
+                            <span class="hidden md:inline-block bg-saffron-gold text-obsidian px-2 py-0.5 font-label-caps text-[10px] font-extrabold uppercase rounded-sm translate-y-[-4px]">Signature</span>
                         </div>
-                        <p class="text-muted-text font-body-md text-sm mb-6">A fiery, sun-dried chili fried chicken specialty. Intense flavors that define the Kaiz signature experience.</p>
+                        <div class="flex-grow border-b-2 border-dotted border-saffron-gold/30 mb-1.5 md:mb-2 transition-all group-hover:border-saffron-gold/70"></div>
+                        <span class="text-saffron-gold font-price-display text-2xl md:text-3xl">₹80</span>
                     </div>
-                    <button class="w-full py-3 bg-saffron-gold text-obsidian font-label-caps text-xs hover:opacity-90 transition-opacity" onclick="window.location.href='menu.html#specialties'">DETAILS</button>
+                    <p class="text-muted-text font-body-md text-sm md:text-base max-w-2xl group-hover:text-pearl-white/80 transition-colors">A fiery, sun-dried chili fried chicken specialty. Intense flavors that define the Kaiz signature experience.</p>
                 </div>
-                <!-- Card 3 -->
-                <div class="bg-charcoal-surface p-8 rounded-none border-t-2 border-saffron-gold/20 flex flex-col justify-between menu-card-glow transition-all duration-300">
-                    <div>
-                        <div class="flex justify-between items-start mb-6">
-                            <h3 class="font-headline-sm text-headline-sm text-pearl-white italic leading-none">Beef Biriyani</h3>
-                            <span class="text-saffron-gold font-price-display text-price-display">₹160</span>
-                        </div>
-                        <p class="text-muted-text font-body-md text-sm mb-6">Tender beef cuts slow-marinated and dum-cooked to melting perfection. A local favorite.</p>
+                
+                <!-- Item 3 -->
+                <div class="flex flex-col gap-2 group cursor-pointer" onclick="window.location.href='menu.html'">
+                    <div class="flex items-end justify-between gap-4">
+                        <h3 class="font-headline-sm text-2xl md:text-3xl text-pearl-white italic leading-none group-hover:text-saffron-gold transition-colors">Beef Biriyani</h3>
+                        <div class="flex-grow border-b-2 border-dotted border-saffron-gold/30 mb-1.5 md:mb-2 transition-all group-hover:border-saffron-gold/70"></div>
+                        <span class="text-saffron-gold font-price-display text-2xl md:text-3xl">₹160</span>
                     </div>
-                    <button class="w-full py-3 border border-saffron-gold/30 text-saffron-gold font-label-caps text-xs hover:bg-saffron-gold hover:text-obsidian transition-colors" onclick="window.location.href='menu.html'">DETAILS</button>
+                    <p class="text-muted-text font-body-md text-sm md:text-base max-w-2xl group-hover:text-pearl-white/80 transition-colors">Tender beef cuts slow-marinated and dum-cooked to melting perfection. A local favorite.</p>
                 </div>
             </div>
             <div class="mt-12 text-center">
@@ -314,62 +378,61 @@
     </section>
 
     <!-- The Dum Process Section -->
-    <section class="py-16 md:py-section-padding-desktop bg-obsidian overflow-hidden">
+    <section class="py-16 md:py-section-padding-desktop bg-transparent overflow-hidden">
         <div class="max-w-container-max mx-auto px-gutter">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-20 gap-4 md:gap-8">
-                <div>
-                    <span class="font-label-caps text-label-caps text-saffron-gold block mb-2 md:mb-4">THE RITUAL</span>
-                    <h2 class="font-headline-sm md:font-headline-md text-headline-sm md:text-headline-md text-pearl-white">The Art of Dum</h2>
-                </div>
-                <p class="max-w-md text-muted-text font-body-md text-sm md:text-base">Our process is a time-capsule of tradition, ensuring every pot delivered is as fresh as the first one of the day.</p>
+            <div class="text-center mb-16 scroll-reveal">
+                <span class="font-label-caps text-label-caps text-saffron-gold block mb-4">THE RITUAL</span>
+                <h2 class="font-headline-md text-headline-md text-pearl-white mb-4">The Art of Dum</h2>
+                <div class="line-draw mx-auto"></div>
+                <p class="mt-8 font-body-md text-body-md max-w-xl mx-auto text-muted-text">Our process is a time-capsule of tradition, ensuring every pot delivered is as fresh as the first one of the day.</p>
             </div>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
                 <!-- Step 1 -->
                 <div class="group relative overflow-hidden aspect-[3/4] rounded-lg cursor-pointer" onclick="window.location.href='philosophy.html'">
-                    <img alt="Marination" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhn9tYRslg17dvyuwf6gLHSA9MxHYX2Ybp8o2wd5Cjy5NHRgEkDoSK9A7daGIWBMyKMikzgqz16eEVZh-CcB-tP79VfjHydQ8Ux-KTA-_VHnlSzcwtepKvA7n06Tkz4mQrLKD9aLM8OSiJN_SyidRQwtpDopD1YiL5f1Ko14MnSCJPcnOQuebrP8uz9PfunyTkvPsKWlloVa7TQgep9XhEnul22A_eAh80KAENU9imCPEB74pKuW_9W9uWh2hcIezgBhb4t1UfHNkH"/>
-                    <div class="absolute inset-0 p-4 md:p-8 flex flex-col justify-end bg-gradient-to-t from-obsidian via-transparent to-transparent">
-                        <div class="relative w-fit mb-2 md:mb-4">
+                    <img alt="Marination" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60" src="/assets/img_1ebd0856-Bdcdit6U.jpg"/>
+                    <div class="absolute inset-0 p-4 md:p-8 flex flex-col justify-end items-center text-center bg-gradient-to-t from-obsidian via-transparent to-transparent">
+                        <div class="relative w-fit mx-auto mb-2 md:mb-4">
                             <div class="step-glow rounded-full"></div>
                             <span class="text-3xl md:text-6xl font-headline-md text-saffron-gold/20 group-hover:text-saffron-gold transition-colors duration-500 relative z-10">01</span>
                         </div>
-                        <h4 class="font-headline-sm text-lg md:text-headline-sm text-pearl-white mb-1 md:mb-2">Marination</h4>
-                        <p class="text-[10px] md:text-xs text-muted-text leading-relaxed opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-500">Overnight spice blend for intense flavor.</p>
+                        <h4 class="font-headline-sm text-lg md:text-xl text-pearl-white mb-1 md:mb-2 whitespace-nowrap">Marination</h4>
+                        <p class="text-[10px] md:text-xs text-muted-text leading-relaxed opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-500 whitespace-nowrap">Overnight spice blend.</p>
                     </div>
                 </div>
                 <!-- Step 2 -->
                 <div class="group relative overflow-hidden aspect-[3/4] rounded-lg cursor-pointer" onclick="window.location.href='philosophy.html'">
-                    <img alt="Central Kitchen" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHg7ZV4kohMfAR7tiMDHR0vQ3gQlw4U4mT-xx5uhxrirc4oTV5ZNBG7Ro8yF1spawrT2MNOS5WcukhRTRs3NdDhL-0T57Qeh16ZMaetuwqxoBOgeAFll9a1pW0cvaxT5bDicpdxVPViJqkMdSkkDG1wL82kZK3Kfjbk1HVur26JoUmqQJ4wLwvYpG9yhogEF09vqwsLVMXTaf0Y_41OH-19HKy-EKZjn9Q6A2WJhKx6rBj42_J4sL5lOFUhphXkUxWpRGqg_-bqluZ"/>
-                    <div class="absolute inset-0 p-4 md:p-8 flex flex-col justify-end bg-gradient-to-t from-obsidian via-transparent to-transparent">
-                        <div class="relative w-fit mb-2 md:mb-4">
+                    <img alt="Central Kitchen" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60" src="/assets/img_eb18b163-Dtgq1mOQ.jpg"/>
+                    <div class="absolute inset-0 p-4 md:p-8 flex flex-col justify-end items-center text-center bg-gradient-to-t from-obsidian via-transparent to-transparent">
+                        <div class="relative w-fit mx-auto mb-2 md:mb-4">
                             <div class="step-glow rounded-full"></div>
                             <span class="text-3xl md:text-6xl font-headline-md text-saffron-gold/20 group-hover:text-saffron-gold transition-colors duration-500 relative z-10">02</span>
                         </div>
-                        <h4 class="font-headline-sm text-lg md:text-headline-sm text-pearl-white mb-1 md:mb-2">Central Kitchen</h4>
-                        <p class="text-[10px] md:text-xs text-muted-text leading-relaxed opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-500">Every portion cooked under expert supervision.</p>
+                        <h4 class="font-headline-sm text-lg md:text-xl text-pearl-white mb-1 md:mb-2 whitespace-nowrap">Preparation</h4>
+                        <p class="text-[10px] md:text-xs text-muted-text leading-relaxed opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-500 whitespace-nowrap">Cooked by experts.</p>
                     </div>
                 </div>
                 <!-- Step 3 -->
                 <div class="group relative overflow-hidden aspect-[3/4] rounded-lg cursor-pointer" onclick="window.location.href='philosophy.html'">
-                    <img alt="Sealed &amp; Steamed" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgGSlbeYMiurhioGHfZTZyNZ1Y5tS7-NEDhS3xIO5DGmUGnHoI3ffYusp8MGde7f2P23HffUyY2CT0ptOi4bVkQ6WZt3_-IQ-dr3ugOW_HcBy_02U6GbhSYjHwxXc6DoQwZSQdNKrSW9Hur5HwhFSMWQ9c5UQ2qkdUXg2M_vlQCW-W4K4dL67ovK3ny5M4I8vWqDZ2L5kKJVJ9yF0pok9ItFT7Waa4qhwUDoq215oeliqDUlYOudoTlk1nR9hjtqyRCraFz0hnV-wf"/>
-                    <div class="absolute inset-0 p-4 md:p-8 flex flex-col justify-end bg-gradient-to-t from-obsidian via-transparent to-transparent">
-                        <div class="relative w-fit mb-2 md:mb-4">
+                    <img alt="Sealed &amp; Steamed" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60" src="/assets/img_8850236a-hLFHD3-K.jpg"/>
+                    <div class="absolute inset-0 p-4 md:p-8 flex flex-col justify-end items-center text-center bg-gradient-to-t from-obsidian via-transparent to-transparent">
+                        <div class="relative w-fit mx-auto mb-2 md:mb-4">
                             <div class="step-glow rounded-full"></div>
                             <span class="text-3xl md:text-6xl font-headline-md text-saffron-gold/20 group-hover:text-saffron-gold transition-colors duration-500 relative z-10">03</span>
                         </div>
-                        <h4 class="font-headline-sm text-lg md:text-headline-sm text-pearl-white mb-1 md:mb-2">Sealed &amp; Steamed</h4>
-                        <p class="text-[10px] md:text-xs text-muted-text leading-relaxed opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-500">Dough-sealed lid locks in every aroma.</p>
+                        <h4 class="font-headline-sm text-lg md:text-xl text-pearl-white mb-1 md:mb-2 whitespace-nowrap">Dum Sealing</h4>
+                        <p class="text-[10px] md:text-xs text-muted-text leading-relaxed opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-500 whitespace-nowrap">Sealed for rich aroma.</p>
                     </div>
                 </div>
                 <!-- Step 4 -->
                 <div class="group relative overflow-hidden aspect-[3/4] rounded-lg cursor-pointer" onclick="window.location.href='philosophy.html'">
-                    <img alt="Served Fresh" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0LeYhZYKBRzG4BQRGJJayHttxaJm4iR0SiSES2wvHd9RxHM7YZwvAuQGQHyDsgJIgWjOKkYJ4lxpsS-VWGfRVeeP8Ug0ts5ox-q-yMDbO4cgKKIRWJ2ZJdgxPf00-nhs9axOpb9eyHsoQuV0n9NhfB_944xmMkkwGb9_zsHaWYVRCGV8lhDurCYtfWh-FOyH9nyyeXuTtdPhVD4NihBuKgjC_f3qtwJVviEb3dRkaaJeb0W4Zymg5MDn4L5pw8c1LULkm0U82qyUe"/>
-                    <div class="absolute inset-0 p-4 md:p-8 flex flex-col justify-end bg-gradient-to-t from-obsidian via-transparent to-transparent">
-                        <div class="relative w-fit mb-2 md:mb-4">
+                    <img alt="Served Fresh" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60" src="/assets/img_1377dda3-DJRKyCVZ.jpg"/>
+                    <div class="absolute inset-0 p-4 md:p-8 flex flex-col justify-end items-center text-center bg-gradient-to-t from-obsidian via-transparent to-transparent">
+                        <div class="relative w-fit mx-auto mb-2 md:mb-4">
                             <div class="step-glow rounded-full"></div>
                             <span class="text-3xl md:text-6xl font-headline-md text-saffron-gold/20 group-hover:text-saffron-gold transition-colors duration-500 relative z-10">04</span>
                         </div>
-                        <h4 class="font-headline-sm text-lg md:text-headline-sm text-pearl-white mb-1 md:mb-2">Served Fresh</h4>
-                        <p class="text-[10px] md:text-xs text-muted-text leading-relaxed opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-500">Delivered hot, flavor at its peak.</p>
+                        <h4 class="font-headline-sm text-lg md:text-xl text-pearl-white mb-1 md:mb-2 whitespace-nowrap">Served Fresh</h4>
+                        <p class="text-[10px] md:text-xs text-muted-text leading-relaxed opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-500 whitespace-nowrap">Hot &amp; flavor-packed.</p>
                     </div>
                 </div>
             </div>
@@ -377,7 +440,7 @@
     </section>
 
     <!-- Catering Section -->
-    <section class="py-section-padding-desktop bg-obsidian border-y border-saffron-gold/10" id="catering">
+    <section class="py-section-padding-desktop bg-transparent border-y border-saffron-gold/10" id="catering">
         <div class="max-w-container-max mx-auto px-gutter grid lg:grid-cols-2 gap-20 items-center">
             <div class="scroll-reveal">
                 <span class="font-label-caps text-label-caps text-saffron-gold block mb-4">EVENTS &amp; GATHERINGS</span>
@@ -436,7 +499,7 @@
     </section>
 
     <!-- Branches Section -->
-    <section class="py-section-padding-desktop bg-obsidian" id="branches">
+    <section class="py-section-padding-desktop bg-transparent" id="branches">
         <div class="max-w-container-max mx-auto px-gutter">
             <div class="text-center mb-16 scroll-reveal">
                 <span class="font-label-caps text-label-caps text-saffron-gold block mb-4">OUR LOCATIONS</span>
@@ -454,7 +517,7 @@
                             <span class="text-sm">+91 96333 32856</span>
                         </a>
                         <div class="flex gap-4 pt-4">
-                            <a class="bg-saffron-gold text-obsidian px-4 py-2 text-[10px] font-bold font-label-caps" href="https://wa.me/918606440057?text=Hi%20Kaiz%20Kitchen%2C%20I%20have%20an%20inquiry%20regarding%20Poothole%20Branch." target="_blank">WHATSAPP</a>
+                            <a class="bg-saffron-gold text-obsidian px-4 py-2 text-[10px] font-bold font-label-caps" href="https://wa.me/917907267371?text=Hi%20Kaiz%20Kitchen%2C%20I%20have%20an%20inquiry%20regarding%20Poothole%20Branch." target="_blank">WHATSAPP</a>
                             <a class="border border-saffron-gold text-saffron-gold px-4 py-2 text-[10px] font-bold font-label-caps" href="https://maps.app.goo.gl/NkW8L" target="_blank">DIRECTIONS</a>
                         </div>
                     </div>
@@ -470,7 +533,7 @@
                             <span class="text-sm">+91 96332 72857</span>
                         </a>
                         <div class="flex gap-4 pt-4">
-                            <a class="bg-saffron-gold text-obsidian px-4 py-2 text-[10px] font-bold font-label-caps" href="https://wa.me/918606440057?text=Hi%20Kaiz%20Kitchen%2C%20I%20have%20an%20inquiry%20regarding%20Ayyanthole%20Branch." target="_blank">WHATSAPP</a>
+                            <a class="bg-saffron-gold text-obsidian px-4 py-2 text-[10px] font-bold font-label-caps" href="https://wa.me/917907267371?text=Hi%20Kaiz%20Kitchen%2C%20I%20have%20an%20inquiry%20regarding%20Ayyanthole%20Branch." target="_blank">WHATSAPP</a>
                             <a class="border border-saffron-gold text-saffron-gold px-4 py-2 text-[10px] font-bold font-label-caps" href="https://maps.app.goo.gl/NkW8L" target="_blank">DIRECTIONS</a>
                         </div>
                     </div>
@@ -486,7 +549,7 @@
                             <span class="text-sm">+91 96333 03408</span>
                         </a>
                         <div class="flex gap-4 pt-4">
-                            <a class="bg-saffron-gold text-obsidian px-4 py-2 text-[10px] font-bold font-label-caps" href="https://wa.me/918606440057?text=Hi%20Kaiz%20Kitchen%2C%20I%20have%20an%20inquiry%20regarding%20Chembukkav%20Branch." target="_blank">WHATSAPP</a>
+                            <a class="bg-saffron-gold text-obsidian px-4 py-2 text-[10px] font-bold font-label-caps" href="https://wa.me/917907267371?text=Hi%20Kaiz%20Kitchen%2C%20I%20have%20an%20inquiry%20regarding%20Chembukkav%20Branch." target="_blank">WHATSAPP</a>
                             <a class="border border-saffron-gold text-saffron-gold px-4 py-2 text-[10px] font-bold font-label-caps" href="https://maps.app.goo.gl/NkW8L" target="_blank">DIRECTIONS</a>
                         </div>
                     </div>
@@ -511,36 +574,12 @@
         </div>
     </section>
 
-    <!-- Instagram Strip -->
-    <section class="bg-obsidian">
-        <div class="flex flex-wrap">
-            <div class="w-1/2 md:w-1/6 aspect-square bg-charcoal-surface overflow-hidden group">
-                <img alt="Insta 1" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRy9jWv1aLB2SYZZ_xEp-RBu7IGloCIyy7C9QYNTqHe71cUjMdBSmf-44_FkAaiz0OYzTB8Xsrm-3WBEir0gPmI9ZZiwN53bVdtPS7x9nFzfPqX28aKf8D2A0wMaqXuyszBq7oCtGcSiSl7JMNZ5s7Oo56f7qnNjVhPfZmcdBxWHyK32Yz4HRhCcXrKaC-qNmaEEo7Wo2_QMob61Q8GdbsQcU2-7vYM3Zw-tuaxLNAh-0-MR49OfdSMbKojLWyu-kyCZk5pmiIFnkm"/>
-            </div>
-            <div class="w-1/2 md:w-1/6 aspect-square bg-charcoal-surface overflow-hidden group">
-                <img alt="Insta 2" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwQcrs2KK3C7SbW3kpcJfi7XV1Tuqo8FQLhZr1pUB9lLq9NiblYrWLUPPhd943W-fmgLishZ_cDQDG74nX8CurpUI2Fje7K8-9ov8nb6g2k-5EZ_HEJA6AfS1on4l0cfS22X_k-h2UDo8MeN_8Xq2VU_koj3X4uvd-FCrsJzTa_vfgZkj7EAkz2luSKqtqUr0G-5sCDD38YUX8Moon8hitV6-_3YihHAXN8YdNsVrDYzH3guXuYFhetMBkLPtqsXgv5onKe6KmHucr"/>
-            </div>
-            <div class="w-1/2 md:w-1/6 aspect-square bg-charcoal-surface overflow-hidden group">
-                <img alt="Insta 3" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBus_Kq5shcs3T-J2iePdi5hlQRz-_KOx1OKAOlCQeL_E2vWmf7tHdxTrDKaZ0FLuBLcF_ITeE38kXXpXPXUWzOg37q0GR3hsmcsOBdKby9hgo4F_-NQWUcGIyAsKk6bw5mUTGuM2clo9DhEY-KPPOtcqriSIHW64KOxs8Im7HoscIEi1Kut0fcMZOpLX89VHa9E2PodU62VKjxGaVVI1YDJp4kQlF8rHYFWf2Dee7sMaIEPKULkhh3Zifs7XtdzbMDXwW51OHqM1zn"/>
-            </div>
-            <div class="w-1/2 md:w-1/6 aspect-square bg-charcoal-surface overflow-hidden group">
-                <img alt="Insta 4" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKam5Z-TixrKKySV43ty3ZIQ6J-fGOR9hRAFFMoCRoilq_y-SfP1ekOwW5f6Ad6u0ohU8f_1vOGRRG9LdzaQaINn9YfBWrSCZ9a6QMWJT7LRLvGpqt0vjrDSSLNmJlYitIXSnuZ1SorygAvhoeqbPYYuNAHpfKBF1u00qiAMuxd291s7dyyzttJH8eB6S76gw_8rpSR4Vnplw0qWyPrnMvHehRW7dU2GiZSkngHlokBQbeuuVXsZNr2I8TDoLFTBRKoZ7mAU-hd-uf"/>
-            </div>
-            <div class="w-1/2 md:w-1/6 aspect-square bg-charcoal-surface overflow-hidden group">
-                <img alt="Insta 5" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbQTeepDgBGQaeC1N1kdJ9uaiEVW5wGT7KQ6CLYXASGWSvryQCqhwFHBvHv-irAChoQHMxpWoD1UM7p2riAHJ7mS0zupYMdQ9mxfMGqp4-4dCbdOJqxZX8CE-SpLP8yhc27k-BtPzLL1pDW-SE_e6pPlbBYNh80wQvmglhVJkVlvS9eC_Kry5x9gTVGShcJdKMRequ7CypHDFo8leqqnvChG8KMDR0h3tIZOcMCsXnPR9rdv1p6VPCLYOJRtr48Rx2_vYb7V2j_vxu"/>
-            </div>
-            <div class="w-1/2 md:w-1/6 aspect-square bg-obsidian flex flex-col items-center justify-center text-center p-4">
-                <span class="font-label-caps text-[10px] text-saffron-gold mb-2">FOLLOW US</span>
-                <h4 class="font-headline-sm text-sm text-pearl-white mb-4 italic">@kaizkitchen_</h4>
-                <a class="text-saffron-gold text-xs font-bold font-label-caps border-b border-saffron-gold" href="#">SEE MORE</a>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Footer -->
     <footer class="bg-obsidian py-section-padding-desktop border-t-2 border-saffron-gold">
         <div class="max-w-container-max mx-auto px-gutter flex flex-col items-center gap-base text-center">
-            <h2 class="font-headline-sm text-headline-sm text-saffron-gold italic mb-4">Kaiz Kitchen</h2>
+            <img src="/assets/logo-DAtJeMS8.png" alt="Kaiz Kitchen Logo" class="h-24 w-auto object-contain mb-4 mx-auto" />
             <div class="flex flex-wrap justify-center gap-gutter mb-8">
                 <a class="font-body-md text-muted-text hover:text-pearl-white transition-colors" href="#">Privacy Policy</a>
                 <a class="font-body-md text-muted-text hover:text-pearl-white transition-colors" href="#">Terms of Service</a>
@@ -558,7 +597,7 @@
     </footer>
 
     <!-- Floating WhatsApp -->
-    <a class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform" href="https://wa.me/918606440057" target="_blank">
+    <a class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform" href="https://wa.me/917907267371" target="_blank">
         <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
             <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.66.986 3.292 1.48 4.961 1.48 5.384 0 9.75-4.372 9.752-9.756.002-2.607-1.012-5.059-2.859-6.907C16.599 2.124 14.137.893 11.53.893 6.152.893 1.782 5.266 1.78 10.652c-.001 1.77.462 3.498 1.402 5.078l-.361 1.321 1.348-.353 3.878 1.456zM17.13 14.86c-.29-.145-1.72-.85-1.985-.947-.268-.098-.463-.146-.659.145-.195.29-.757.947-.927 1.14-.17.194-.34.217-.63.072-.29-.145-1.226-.452-2.335-1.44-.863-.77-1.446-1.722-1.616-2.013-.17-.29-.018-.447.127-.59.13-.13.29-.34.435-.51.145-.17.193-.29.29-.485.097-.193.048-.363-.024-.51-.07-.145-.658-1.586-.902-2.17-.238-.574-.48-.495-.659-.504-.17-.008-.364-.01-.557-.01-.193 0-.507.072-.772.36-.265.29-1.01 1.01-1.01 2.458 0 1.448 1.054 2.85 1.198 3.04.145.195 2.076 3.17 5.028 4.444.702.302 1.25.483 1.677.619.706.224 1.348.193 1.856.117.564-.084 1.72-.702 1.962-1.38.242-.678.242-1.258.17-1.38-.072-.12-.268-.194-.558-.34z"/>
         </svg>
@@ -767,7 +806,7 @@
                                          `- Date of Event: ${date}\n` +
                                          `- Additional Notes: ${notes}`;
 
-                const whatsappUrl = `https://wa.me/918606440057?text=${encodeURIComponent(formattedMessage)}`;
+                const whatsappUrl = `https://wa.me/917907267371?text=${encodeURIComponent(formattedMessage)}`;
                 
                 const container = cateringForm.parentElement;
                 container.innerHTML = `
@@ -784,5 +823,6 @@
             });
         }
     </script>
+
 </body>
 </html>

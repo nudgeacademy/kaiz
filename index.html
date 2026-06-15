@@ -235,6 +235,13 @@
 
 
 
+        /* Text separation & contrast utilities */
+        .text-shadow-premium {
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.95), 0 2px 4px rgba(0, 0, 0, 0.9);
+        }
+        .text-shadow-gold {
+            text-shadow: 0 4px 12px rgba(245, 193, 7, 0.25), 0 2px 4px rgba(0, 0, 0, 0.9);
+        }
     </style>
 </head>
 <body class="bg-obsidian text-on-surface font-body-md overflow-x-hidden">
@@ -272,13 +279,14 @@
         <!-- Aromatic Particles Container -->
         <div id="particle-container"></div>
         <div class="absolute inset-0 z-0 overflow-hidden">
-            <img alt="Cinematic Biriyani" class="w-full h-full object-cover opacity-60 hero-img hero-bg-anim" src="IMAGES/KAIZ%20KITCHEN%20HERO.png?v=2"/>
-            <div class="absolute inset-0 bg-gradient-to-b from-obsidian/40 via-transparent to-obsidian"></div>
+            <img alt="Cinematic Biriyani" class="w-full h-full object-cover opacity-50 hero-img hero-bg-anim" src="IMAGES/KAIZ%20KITCHEN%20HERO.png?v=2"/>
+            <div class="absolute inset-0 bg-gradient-to-b from-obsidian/85 via-obsidian/45 to-obsidian"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(13,13,13,0.85)_0%,rgba(13,13,13,0.3)_60%,transparent_100%)]"></div>
         </div>
         <div class="relative z-20 text-center px-gutter max-w-4xl">
-            <span class="font-label-caps text-label-caps text-saffron-gold mb-4 block hero-text-anim hero-anim-1">EST. THRISSUR · SINCE 2018</span>
-            <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-pearl-white mb-6 hero-text-anim hero-anim-2">Thrissur's Most Aromatic Legacy</h1>
-            <p class="font-body-lg text-body-lg text-muted-text mb-10 max-w-2xl mx-auto hero-text-anim hero-anim-3">Malabar Dum Biriyani crafted with heritage spices and slow-cooked to perfection. Where every grain tells a story of royalty.</p>
+            <span class="font-label-caps text-label-caps text-saffron-gold mb-4 block hero-text-anim hero-anim-1 text-shadow-gold">EST. THRISSUR · SINCE 2018</span>
+            <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-pearl-white mb-6 hero-text-anim hero-anim-2 text-shadow-premium">Thrissur's Most Aromatic Legacy</h1>
+            <p class="font-body-lg text-body-lg text-muted-text mb-10 max-w-2xl mx-auto hero-text-anim hero-anim-3 text-shadow-premium">Malabar Dum Biriyani crafted with heritage spices and slow-cooked to perfection. Where every grain tells a story of royalty.</p>
             <div class="flex flex-col md:flex-row gap-4 justify-center hero-text-anim hero-anim-4">
                 <a class="bg-saffron-gold text-obsidian px-10 py-4 font-label-caps text-label-caps hover:scale-105 transition-transform btn-shine" href="#branches">Find Your Branch</a>
                 <a class="border border-saffron-gold text-saffron-gold px-10 py-4 font-label-caps text-label-caps hover:bg-saffron-gold/10 transition-colors" href="#catering">Book Catering</a>

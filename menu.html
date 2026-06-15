@@ -110,6 +110,14 @@
             90% { opacity: 0.3; }
             100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
         }
+
+        /* Text separation & contrast utilities */
+        .text-shadow-premium {
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.95), 0 2px 4px rgba(0, 0, 0, 0.9);
+        }
+        .text-shadow-gold {
+            text-shadow: 0 4px 12px rgba(245, 193, 7, 0.25), 0 2px 4px rgba(0, 0, 0, 0.9);
+        }
     </style>
 </head>
 <body class="bg-obsidian text-on-surface font-body-md overflow-x-hidden">
@@ -146,13 +154,14 @@
     <!-- Hero Section -->
     <section class="relative h-[60vh] flex items-center justify-center overflow-hidden bg-obsidian">
         <div class="absolute inset-0 z-0 overflow-hidden">
-            <img alt="Kaiz Menu Hero" class="w-full h-full object-cover opacity-40" src="IMAGES/img_4a5e0350.jpg"/>
-            <div class="absolute inset-0 bg-gradient-to-b from-obsidian/40 via-transparent to-obsidian"></div>
+            <img alt="Kaiz Menu Hero" class="w-full h-full object-cover opacity-35" src="IMAGES/img_4a5e0350.jpg"/>
+            <div class="absolute inset-0 bg-gradient-to-b from-obsidian/85 via-obsidian/45 to-obsidian"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(13,13,13,0.85)_0%,rgba(13,13,13,0.3)_60%,transparent_100%)]"></div>
         </div>
         <div class="relative z-20 text-center px-gutter">
-            <span class="font-label-caps text-label-caps text-saffron-gold mb-4 block">AUTHENTIC TASTE</span>
-            <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-pearl-white">The Kaiz Menu</h1>
-            <p class="font-body-lg text-body-lg text-muted-text max-w-xl mx-auto mt-4">Layered in royalty, slow-cooked in heritage. Every dish is a representation of Malabar Dum perfection.</p>
+            <span class="font-label-caps text-label-caps text-saffron-gold mb-4 block text-shadow-gold">AUTHENTIC TASTE</span>
+            <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-pearl-white text-shadow-premium">The Kaiz Menu</h1>
+            <p class="font-body-lg text-body-lg text-muted-text max-w-xl mx-auto mt-4 text-shadow-premium">Layered in royalty, slow-cooked in heritage. Every dish is a representation of Malabar Dum perfection.</p>
         </div>
     </section>
 
@@ -509,6 +518,6 @@
                 }
             });
         });
-
+    </script>
 </body>
 </html>
