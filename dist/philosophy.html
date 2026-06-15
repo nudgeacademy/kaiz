@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Kaiz Kitchen | Our Philosophy</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#e5e2e1",
+                        "surface-variant": "#353534",
+                        "on-background": "#e5e2e1",
+                        "outline": "#9b9078",
+                        "charcoal-surface": "#1A1A1A",
+                        "on-secondary": "#3b2f00",
+                        "surface-dim": "#131313",
+                        "surface": "#131313",
+                        "saffron-gold": "#F5C107",
+                        "background": "#131313",
+                        "pearl-white": "#FFFFFF",
+                        "obsidian": "#0D0D0D",
+                        "muted-text": "#AAAAAA",
+                        "secondary": "#eac32b",
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "section-padding-mobile": "64px",
+                        "section-padding-desktop": "120px"
+                    },
+                    "fontFamily": {
+                        "price-display": ["Plus Jakarta Sans"],
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-sm": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "price-display": ["20px", {"lineHeight": "1.0", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                        "headline-md": ["48px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "headline-sm": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .scroll-reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+        .scroll-reveal.active { opacity: 1; transform: translateY(0); }
+        .nav-scrolled { background-color: #0D0D0D !important; border-bottom: 1px solid rgba(245, 193, 7, 0.1); }
+        .menu-card-glow:hover { box-shadow: 0 0 20px rgba(245, 193, 7, 0.15); border-color: #F5C107 !important; }
+        .line-draw { height: 2px; width: 0; background: #F5C107; transition: width 0.8s ease-in-out; }
+        .active .line-draw { width: 100px; }
+
+        #shader-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -10;
+            pointer-events: none;
+        }
+        
+        #particle-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        @keyframes riseUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-obsidian text-on-surface font-body-md overflow-x-hidden">
+    <!-- WebGL Background -->
+    <canvas id="shader-bg"></canvas>
+    <!-- Aromatic Particles Container -->
+    <div id="particle-container"></div>
+    
+    <!-- Top Navigation -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300 bg-transparent backdrop-blur-md border-b border-saffron-gold/10 px-gutter py-base" id="top-nav">
+        <div class="max-w-container-max mx-auto flex justify-between items-center">
+            <a class="font-headline-sm text-headline-sm text-saffron-gold italic" href="index.html">Kaiz Kitchen</a>
+            <div class="hidden md:flex gap-gutter items-center">
+                <a class="font-body-md text-body-md uppercase tracking-widest text-saffron-gold hover:text-saffron-gold transition-colors font-bold underline underline-offset-8" href="philosophy.html">Heritage</a>
+                <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="menu.html">Menu</a>
+                <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="index.html#catering">Catering</a>
+                <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="index.html#branches">Branches</a>
+            </div>
+            <button class="md:hidden text-saffron-gold" id="menu-btn">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+        <!-- Mobile Dropdown Menu -->
+        <div class="hidden flex-col gap-4 mt-4 pb-4 border-t border-saffron-gold/10 md:hidden" id="mobile-nav">
+            <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="philosophy.html">Heritage</a>
+            <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="menu.html">Menu</a>
+            <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="index.html#catering">Catering</a>
+            <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="index.html#branches">Branches</a>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0 overflow-hidden">
+            <img alt="Kaiz Heritage Hero" class="w-full h-full object-cover opacity-40" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcvgVOauIb0dHbpp8OsNOjbRG3xvC5New-DYsa0d8l5qAHMP9fiEb9gEXa88mB3iT_L59oDQnNwLeprAg9ADQvLZXZkyloJ9bnadgCWC6LdAXf0QXeKAWjArlFovnDhSnGeJ58R2M-Dv6n9J3uNLq7VveZdjRG2n0tvPhYFxIa7vL9JqOH3dc6_u_rbIdANxVpERr4PPW6qZKRtVpEreBD5sNmbW40wG5Un-mH8AdllLyDmaYLPhVdWvCVlPhzRTff1IgGS39fz-Lp"/>
+            <div class="absolute inset-0 bg-gradient-to-b from-obsidian/40 via-transparent to-obsidian"></div>
+        </div>
+        <div class="relative z-20 text-center px-gutter">
+            <span class="font-label-caps text-label-caps text-saffron-gold mb-4 block">THE GENESIS</span>
+            <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-pearl-white">Our Heritage &amp; Process</h1>
+            <p class="font-body-lg text-body-lg text-muted-text max-w-xl mx-auto mt-4">Nurtured on local soil, cooked by local hands. The timeline and values that define our legacy.</p>
+        </div>
+    </section>
+
+    <!-- Content Sections -->
+    <div class="max-w-container-max mx-auto px-gutter py-20 space-y-32">
+        <!-- Story Timeline -->
+        <section class="space-y-16">
+            <div class="text-center max-w-xl mx-auto scroll-reveal">
+                <span class="font-label-caps text-label-caps text-saffron-gold block mb-2">THE PATHWAY</span>
+                <h2 class="font-headline-md text-headline-md text-pearl-white italic">History in the Making</h2>
+                <div class="line-draw mx-auto mt-4"></div>
+            </div>
+            
+            <div class="relative max-w-3xl mx-auto">
+                <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-saffron-gold/30"></div>
+                
+                <div class="space-y-20">
+                    <!-- Event 1 -->
+                    <div class="relative flex flex-col md:flex-row items-stretch md:justify-between scroll-reveal">
+                        <div class="absolute left-4 md:left-1/2 -translate-x-[5px] top-2 w-2.5 h-2.5 bg-saffron-gold rounded-full shadow-[0_0_10px_#F5C107]"></div>
+                        <div class="w-full md:w-[45%] pl-12 md:pl-0 md:text-right flex flex-col md:justify-start">
+                            <span class="font-label-caps text-saffron-gold text-lg font-bold mb-2">2018</span>
+                            <h3 class="font-headline-sm text-pearl-white italic text-xl mb-2">The Foyer Pot</h3>
+                            <p class="text-muted-text text-sm leading-relaxed">Kaiz Kitchen starts in a small foyer, using heritage spices sourced from local Malabar ports to cook one large pot a day.</p>
+                        </div>
+                        <div class="hidden md:block w-[45%]"></div>
+                    </div>
+                    
+                    <!-- Event 2 -->
+                    <div class="relative flex flex-col md:flex-row items-stretch md:justify-between scroll-reveal">
+                        <div class="absolute left-4 md:left-1/2 -translate-x-[5px] top-2 w-2.5 h-2.5 bg-saffron-gold rounded-full shadow-[0_0_10px_#F5C107]"></div>
+                        <div class="hidden md:block w-[45%]"></div>
+                        <div class="w-full md:w-[45%] pl-12 flex flex-col">
+                            <span class="font-label-caps text-saffron-gold text-lg font-bold mb-2">2020</span>
+                            <h3 class="font-headline-sm text-pearl-white italic text-xl mb-2">Community Landmark</h3>
+                            <p class="text-muted-text text-sm leading-relaxed">Thrissur embraces the distinct, spice-packed recipe. Long queues form down Poothole Road as we open our official first branch.</p>
+                        </div>
+                    </div>
+
+                    <!-- Event 3 -->
+                    <div class="relative flex flex-col md:flex-row items-stretch md:justify-between scroll-reveal">
+                        <div class="absolute left-4 md:left-1/2 -translate-x-[5px] top-2 w-2.5 h-2.5 bg-saffron-gold rounded-full shadow-[0_0_10px_#F5C107]"></div>
+                        <div class="w-full md:w-[45%] pl-12 md:pl-0 md:text-right flex flex-col md:justify-start">
+                            <span class="font-label-caps text-saffron-gold text-lg font-bold mb-2">2023</span>
+                            <h3 class="font-headline-sm text-pearl-white italic text-xl mb-2">Expansion &amp; Catering</h3>
+                            <p class="text-muted-text text-sm leading-relaxed">Opening in Ayyanthole and Chembukkav, and launching our grand wedding catering division handling events of 2000+ guests.</p>
+                        </div>
+                        <div class="hidden md:block w-[45%]"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bento Grid: Value Pillars -->
+        <section class="space-y-16">
+            <div class="text-center max-w-xl mx-auto scroll-reveal">
+                <span class="font-label-caps text-label-caps text-saffron-gold block mb-2">OUR STANDARDS</span>
+                <h2 class="font-headline-md text-headline-md text-pearl-white italic">The Four Pillars of Kaiz</h2>
+                <div class="line-draw mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-charcoal-surface p-10 border-t border-saffron-gold/20 rounded-lg relative overflow-hidden group">
+                    <span class="material-symbols-outlined text-saffron-gold text-5xl mb-8 block">local_shipping</span>
+                    <h3 class="font-headline-sm text-xl text-pearl-white mb-4 italic">Pure Sourcing</h3>
+                    <p class="text-muted-text text-sm leading-relaxed">Spices are hand-selected directly from organic growers in Kozhikode and Wayanad, ensuring peak freshness.</p>
+                </div>
+                <!-- Card 2 (Large) -->
+                <div class="bg-charcoal-surface p-10 border-t border-saffron-gold rounded-lg relative overflow-hidden group md:col-span-2 flex flex-col md:flex-row gap-8">
+                    <div class="flex-1">
+                        <span class="material-symbols-outlined text-saffron-gold text-5xl mb-8 block">restaurant</span>
+                        <h3 class="font-headline-sm text-xl text-pearl-white mb-4 italic">The Art of Dum</h3>
+                        <p class="text-muted-text text-sm leading-relaxed">We seal our large copper vessels with dough rings. This locks in steam and volatile oil molecules to flavor every grain.</p>
+                    </div>
+                    <div class="flex-1 rounded-lg overflow-hidden h-40 md:h-full relative">
+                        <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" alt="Process details" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHg7ZV4kohMfAR7tiMDHR0vQ3gQlw4U4mT-xx5uhxrirc4oTV5ZNBG7Ro8yF1spawrT2MNOS5WcukhRTRs3NdDhL-0T57Qeh16ZMaetuwqxoBOgeAFll9a1pW0cvaxT5bDicpdxVPViJqkMdSkkDG1wL82kZK3Kfjbk1HVur26JoUmqQJ4wLwvYpG9yhogEF09vqwsLVMXTaf0Y_41OH-19HKy-EKZjn9Q6A2WJhKx6rBj42_J4sL5lOFUhphXkUxWpRGqg_-bqluZ"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-obsidian py-section-padding-desktop border-t-2 border-saffron-gold">
+        <div class="max-w-container-max mx-auto px-gutter flex flex-col items-center gap-base text-center">
+            <h2 class="font-headline-sm text-headline-sm text-saffron-gold italic mb-4">Kaiz Kitchen</h2>
+            <div class="flex flex-wrap justify-center gap-gutter mb-8">
+                <a class="font-body-md text-muted-text hover:text-pearl-white transition-colors" href="#">Privacy Policy</a>
+                <a class="font-body-md text-muted-text hover:text-pearl-white transition-colors" href="#">Terms of Service</a>
+                <a class="font-body-md text-muted-text hover:text-pearl-white transition-colors" href="#">Contact Us</a>
+                <a class="font-body-md text-muted-text hover:text-pearl-white transition-colors" href="#">Careers</a>
+            </div>
+            <p class="font-body-md text-on-surface-variant max-w-lg mb-8 italic">"Hey, Still starving for Biriyani? Let's break it!"</p>
+            <div class="flex gap-10 mb-8">
+                <a class="text-saffron-gold font-label-caps text-xs" href="tel:+919633332856">P: 96333 32856</a>
+                <a class="text-saffron-gold font-label-caps text-xs" href="tel:+919633272857">A: 96332 72857</a>
+                <a class="text-saffron-gold font-label-caps text-xs" href="tel:+919633303408">C: 96333 03408</a>
+            </div>
+            <p class="font-body-md text-muted-text text-sm">© 2024 Kaiz Kitchen. Thrissur's Biriyani Institution.</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform" href="https://wa.me/918606440057" target="_blank">
+        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.66.986 3.292 1.48 4.961 1.48 5.384 0 9.75-4.372 9.752-9.756.002-2.607-1.012-5.059-2.859-6.907C16.599 2.124 14.137.893 11.53.893 6.152.893 1.782 5.266 1.78 10.652c-.001 1.77.462 3.498 1.402 5.078l-.361 1.321 1.348-.353 3.878 1.456zM17.13 14.86c-.29-.145-1.72-.85-1.985-.947-.268-.098-.463-.146-.659.145-.195.29-.757.947-.927 1.14-.17.194-.34.217-.63.072-.29-.145-1.226-.452-2.335-1.44-.863-.77-1.446-1.722-1.616-2.013-.17-.29-.018-.447.127-.59.13-.13.29-.34.435-.51.145-.17.193-.29.29-.485.097-.193.048-.363-.024-.51-.07-.145-.658-1.586-.902-2.17-.238-.574-.48-.495-.659-.504-.17-.008-.364-.01-.557-.01-.193 0-.507.072-.772.36-.265.29-1.01 1.01-1.01 2.458 0 1.448 1.054 2.85 1.198 3.04.145.195 2.076 3.17 5.028 4.444.702.302 1.25.483 1.677.619.706.224 1.348.193 1.856.117.564-.084 1.72-.702 1.962-1.38.242-.678.242-1.258.17-1.38-.072-.12-.268-.194-.558-.34z"/>
+        </svg>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        // Toggle mobile menu
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+        if (menuBtn && mobileNav) {
+            menuBtn.addEventListener('click', () => {
+                mobileNav.classList.toggle('hidden');
+                mobileNav.classList.toggle('flex');
+            });
+        }
+
+        // Navigation scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('top-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.scroll-reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+
+
+        // WebGL Liquid Gold Shader
+        (function() {
+            const canvas = document.getElementById('shader-bg');
+            if (!canvas) return;
+
+            function syncSize() {
+                const w = window.innerWidth;
+                const h = window.innerHeight;
+                if (canvas.width !== w || canvas.height !== h) {
+                    canvas.width  = w;
+                    canvas.height = h;
+                }
+            }
+            window.addEventListener('resize', syncSize);
+            syncSize();
+
+            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            if (!gl) return;
+            
+            const vs = `attribute vec2 a_position;
+            varying vec2 v_texCoord;
+            void main() {
+                v_texCoord = a_position * 0.5 + 0.5;
+                gl_Position = vec4(a_position, 0.0, 1.0);
+            }`;
+            
+            const fs = `precision highp float;
+            uniform float u_time;
+            uniform vec2 u_resolution;
+            uniform vec2 u_mouse;
+            varying vec2 v_texCoord;
+
+            void main() {
+                vec2 uv = v_texCoord;
+                
+                float time = u_time * 0.15;
+                
+                float wave1 = sin(uv.x * 10.0 + time + sin(uv.y * 5.0 + time));
+                float wave2 = cos(uv.y * 8.0 - time + cos(uv.x * 4.0 - time));
+                float intensity = (wave1 + wave2) * 0.5 + 0.5;
+                
+                vec3 goldColor = vec3(0.96, 0.75, 0.03);
+                vec3 obsidian = vec3(0.05, 0.05, 0.05);
+                
+                vec3 color = mix(obsidian, goldColor * 0.15, intensity * 0.4);
+                
+                vec2 m = u_mouse / u_resolution;
+                float dist = distance(uv, m);
+                float glow = smoothstep(0.3, 0.0, dist) * 0.05;
+                color += goldColor * glow;
+
+                gl_FragColor = vec4(color, 1.0);
+            }`;
+
+            function cs(type, src) {
+                const s = gl.createShader(type);
+                gl.shaderSource(s, src);
+                gl.compileShader(s);
+                return s;
+            }
+            
+            const prog = gl.createProgram();
+            gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+            gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+            gl.linkProgram(prog);
+            gl.useProgram(prog);
+            
+            const buf = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+            
+            const pos = gl.getAttribLocation(prog, 'a_position');
+            gl.enableVertexAttribArray(pos);
+            gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+            
+            const uTime = gl.getUniformLocation(prog, 'u_time');
+            const uRes = gl.getUniformLocation(prog, 'u_resolution');
+            const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+            let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+            window.addEventListener('mousemove', (event) => {
+                const rect = canvas.getBoundingClientRect();
+                if (rect.width && rect.height) {
+                    const nx = (event.clientX - rect.left) / rect.width;
+                    const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+                    mouse.x = nx * canvas.width;
+                    mouse.y = ny * canvas.height;
+                }
+            });
+
+            function render(t) {
+                gl.viewport(0, 0, canvas.width, canvas.height);
+                if (uTime) gl.uniform1f(uTime, t * 0.001);
+                if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+                if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+                gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+                requestAnimationFrame(render);
+            }
+            render(0);
+        })();
+
+        // Smooth scroll for anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

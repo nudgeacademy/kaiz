@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Kaiz Kitchen | Order Food via WhatsApp</title>
+    <link rel="icon" type="image/png" href="IMAGES/logo.png" />
+    <script src="tailwind.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#e5e2e1",
+                        "surface-variant": "#353534",
+                        "on-background": "#e5e2e1",
+                        "outline": "#9b9078",
+                        "charcoal-surface": "#1A1A1A",
+                        "on-secondary": "#3b2f00",
+                        "surface-dim": "#131313",
+                        "surface": "#131313",
+                        "saffron-gold": "#F5C107",
+                        "background": "#131313",
+                        "pearl-white": "#FFFFFF",
+                        "obsidian": "#0D0D0D",
+                        "muted-text": "#AAAAAA",
+                        "secondary": "#eac32b",
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "section-padding-mobile": "64px",
+                        "section-padding-desktop": "120px"
+                    },
+                    "fontFamily": {
+                        "price-display": ["Plus Jakarta Sans"],
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-sm": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "price-display": ["20px", {"lineHeight": "1.0", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                        "headline-md": ["48px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "headline-sm": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg-mobile": ["40px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .gold-dust { position: absolute; pointer-events: none; border-radius: 50%; background: #F5C107; opacity: 0.3; filter: blur(1px); z-index: 5; }
+        body {
+            background-color: #0D0D0D;
+            background-image: 
+                linear-gradient(rgba(245, 193, 7, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(245, 193, 7, 0.04) 1px, transparent 1px),
+                radial-gradient(rgba(245, 193, 7, 0.05) 1.5px, transparent 1.5px);
+            background-size: 80px 80px, 80px 80px, 20px 20px;
+            background-position: -1px -1px, -1px -1px, 10px 10px;
+        }
+        .scroll-reveal { opacity: 0; transform: translateY(50px) scale(0.95); filter: blur(5px); transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .scroll-reveal.active { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+
+        .nav-scrolled { background-color: #0D0D0D !important; border-bottom: 1px solid rgba(245, 193, 7, 0.1); }
+        .menu-card-glow:hover { box-shadow: 0 0 20px rgba(245, 193, 7, 0.15); border-color: #F5C107 !important; }
+        .line-draw { height: 2px; width: 0; background: #F5C107; transition: width 0.8s ease-in-out; }
+        .active .line-draw { width: 100px; }
+        .step-transition { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+
+        #shader-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -10;
+            pointer-events: none;
+        }
+        
+        #particle-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        @keyframes riseUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-obsidian text-on-surface font-body-md overflow-x-hidden">
+    <!-- WebGL Background -->
+    <!-- WebGL Background Removed -->
+    <!-- Aromatic Particles Container -->
+    <div id="particle-container"></div>
+    
+    <!-- Top Navigation -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300 bg-transparent backdrop-blur-md border-b border-saffron-gold/10 px-gutter py-base" id="top-nav">
+        <div class="max-w-container-max mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center"><img src="IMAGES/logo.png" alt="Kaiz Kitchen Logo" class="h-12 md:h-16 w-auto object-contain" /></a>
+            <div class="hidden md:flex gap-gutter items-center">
+                <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="index.html">Home</a>
+                <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="philosophy.html">Heritage</a>
+                <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="menu.html">Menu</a>
+                <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="index.html#catering">Catering</a>
+                <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="index.html#branches">Branches</a>
+                <button class="bg-saffron-gold text-obsidian px-6 py-2 uppercase font-bold text-xs tracking-widest hover:opacity-80 transition-opacity" onclick="window.location.reload()">Order Now</button>
+            </div>
+            <button class="md:hidden text-saffron-gold" id="menu-btn">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+        <!-- Mobile Dropdown Menu -->
+        <div class="hidden flex-col gap-4 mt-4 pb-4 border-t border-saffron-gold/10 md:hidden" id="mobile-nav">
+            <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="index.html">Home</a>
+            <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="philosophy.html">Heritage</a>
+            <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="menu.html">Menu</a>
+            <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="index.html#catering">Catering</a>
+            <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="index.html#branches">Branches</a>
+            <button class="bg-saffron-gold text-obsidian py-3 uppercase font-bold text-xs tracking-widest hover:opacity-80 transition-opacity" onclick="window.location.reload()">Order Now</button>
+        </div>
+    </nav>
+    
+    <main class="min-h-screen pt-32 pb-20 px-4 md:px-margin-desktop max-w-container-max mx-auto relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+            <!-- Left Side: Editorial Content -->
+            <div class="lg:col-span-5 flex flex-col justify-center scroll-reveal">
+                <span class="font-label-caps text-label-caps text-saffron-gold tracking-widest mb-4">ONLINE ORDERING</span>
+                <h1 class="font-display-lg text-display-lg text-pearl-white leading-none mb-8">
+                    Order Food <br/>
+                    <span class="text-saffron-gold italic">Via WhatsApp.</span>
+                </h1>
+                <p class="text-muted-text font-body-lg text-body-lg max-w-md mb-12">
+                    Build your plate below, select your dining preference, and submit. We will redirect you to WhatsApp to instantly complete your order with the kitchen.
+                </p>
+                <div class="space-y-6">
+                    <div class="flex items-center gap-4 group">
+                        <div class="w-12 h-12 rounded-full border border-saffron-gold/20 flex items-center justify-center group-hover:bg-saffron-gold/10 transition-colors">
+                            <span class="material-symbols-outlined text-saffron-gold">lunch_dining</span>
+                        </div>
+                        <div>
+                            <p class="font-label-caps text-xs text-pearl-white tracking-widest">DUM SOVEREIGNTY</p>
+                            <p class="text-xs text-muted-text">Unlimited rice served with every single full dine-in portion.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 group">
+                        <div class="w-12 h-12 rounded-full border border-saffron-gold/20 flex items-center justify-center group-hover:bg-saffron-gold/10 transition-colors">
+                            <span class="material-symbols-outlined text-saffron-gold">speed</span>
+                        </div>
+                        <div>
+                            <p class="font-label-caps text-xs text-pearl-white tracking-widest">FAST KITCHEN HANDOFF</p>
+                            <p class="text-xs text-muted-text">Pre-packaged and dough-sealed right to your door or table.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Order Calculator Step Form -->
+            <div class="lg:col-span-7">
+                <div class="bg-charcoal-surface p-8 md:p-12 border-t-2 border-saffron-gold rounded-none relative overflow-hidden">
+                    <!-- Progress Bar -->
+                    <div class="flex justify-between items-center mb-12 relative z-20">
+                        <div class="flex flex-col items-center gap-2">
+                            <div class="w-10 h-10 rounded-full border-2 border-saffron-gold bg-saffron-gold text-obsidian flex items-center justify-center font-bold text-sm transition-all duration-500" id="step-indicator-1">1</div>
+                            <span class="text-[10px] uppercase tracking-widest text-saffron-gold font-bold">Enclave</span>
+                        </div>
+                        <div class="h-[1px] flex-1 mx-4 bg-saffron-gold/20 relative top-[-10px]">
+                            <div class="h-full bg-saffron-gold w-0 transition-all duration-700" id="progress-line-1"></div>
+                        </div>
+                        <div class="flex flex-col items-center gap-2">
+                            <div class="w-10 h-10 rounded-full border-2 border-saffron-gold/20 text-muted-text flex items-center justify-center font-bold text-sm transition-all duration-500" id="step-indicator-2">2</div>
+                            <span class="text-[10px] uppercase tracking-widest text-muted-text font-bold">Plate</span>
+                        </div>
+                        <div class="h-[1px] flex-1 mx-4 bg-saffron-gold/20 relative top-[-10px]">
+                            <div class="h-full bg-saffron-gold w-0 transition-all duration-700" id="progress-line-2"></div>
+                        </div>
+                        <div class="flex flex-col items-center gap-2">
+                            <div class="w-10 h-10 rounded-full border-2 border-saffron-gold/20 text-muted-text flex items-center justify-center font-bold text-sm transition-all duration-500" id="step-indicator-3">3</div>
+                            <span class="text-[10px] uppercase tracking-widest text-muted-text font-bold">Identity</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 1: Branch & Mode -->
+                    <div class="step-transition" id="step-1">
+                        <h2 class="font-headline-sm text-pearl-white mb-6 italic">Select Branch &amp; Dining Mode</h2>
+                        <div class="space-y-6">
+                            <div class="space-y-2">
+                                <label class="font-label-caps text-[10px] text-muted-text">CHOOSE BRANCH</label>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <label class="cursor-pointer">
+                                        <input checked class="peer sr-only" name="branch" type="radio" value="poothole"/>
+                                        <div class="py-3 border border-saffron-gold/20 text-center text-xs text-pearl-white peer-checked:border-saffron-gold peer-checked:bg-saffron-gold/10">Poothole</div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="peer sr-only" name="branch" type="radio" value="ayyanthole"/>
+                                        <div class="py-3 border border-saffron-gold/20 text-center text-xs text-pearl-white peer-checked:border-saffron-gold peer-checked:bg-saffron-gold/10">Ayyanthole</div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="peer sr-only" name="branch" type="radio" value="chembukkav"/>
+                                        <div class="py-3 border border-saffron-gold/20 text-center text-xs text-pearl-white peer-checked:border-saffron-gold peer-checked:bg-saffron-gold/10">Chembukkav</div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="font-label-caps text-[10px] text-muted-text">DINING PREFERENCE</label>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <label class="cursor-pointer">
+                                        <input checked class="peer sr-only" name="mode" type="radio" value="takeaway"/>
+                                        <div class="py-3 border border-saffron-gold/20 text-center text-xs text-pearl-white peer-checked:border-saffron-gold peer-checked:bg-saffron-gold/10">Takeaway</div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="peer sr-only" name="mode" type="radio" value="dinein"/>
+                                        <div class="py-3 border border-saffron-gold/20 text-center text-xs text-pearl-white peer-checked:border-saffron-gold peer-checked:bg-saffron-gold/10">Dine-in</div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="peer sr-only" name="mode" type="radio" value="delivery"/>
+                                        <div class="py-3 border border-saffron-gold/20 text-center text-xs text-pearl-white peer-checked:border-saffron-gold peer-checked:bg-saffron-gold/10">Delivery</div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="w-full mt-12 py-4 bg-saffron-gold text-obsidian font-label-caps text-xs font-bold tracking-widest hover:opacity-90 active:scale-[0.98] transition-all shadow-[0_0_20px_rgba(245,193,7,0.2)]" onclick="nextStep(2)">
+                            BUILD YOUR PLATE
+                        </button>
+                    </div>
+
+                    <!-- Step 2: Select Items -->
+                    <div class="step-transition hidden opacity-0 translate-x-12" id="step-2">
+                        <button class="flex items-center gap-2 text-saffron-gold font-label-caps text-xs mb-6 hover:underline" onclick="nextStep(1)">
+                            <span class="material-symbols-outlined text-sm">arrow_back</span> CHANGE PREFERENCES
+                        </button>
+                        <h2 class="font-headline-sm text-pearl-white mb-6 italic">Select Menu Items</h2>
+                        
+                        <div class="space-y-4 max-h-[350px] overflow-y-auto pr-2" id="menu-items-list">
+                            <!-- Items will be generated by JavaScript -->
+                        </div>
+                        
+                        <!-- Order Total Summary -->
+                        <div class="mt-6 border-t border-saffron-gold/20 pt-4 flex justify-between items-center text-pearl-white font-bold text-lg">
+                            <span>Total Amount:</span>
+                            <span class="text-saffron-gold" id="order-total-display">₹0</span>
+                        </div>
+
+                        <button class="w-full mt-8 py-4 bg-saffron-gold text-obsidian font-label-caps text-xs font-bold tracking-widest hover:opacity-90 active:scale-[0.98] transition-all shadow-[0_0_20px_rgba(245,193,7,0.2)]" onclick="nextStep(3)">
+                            ENTER DETAILS
+                        </button>
+                    </div>
+
+                    <!-- Step 3: Identity & Notes -->
+                    <div class="step-transition hidden opacity-0 translate-x-12" id="step-3">
+                        <button class="flex items-center gap-2 text-saffron-gold font-label-caps text-xs mb-6 hover:underline" onclick="nextStep(2)">
+                            <span class="material-symbols-outlined text-sm">arrow_back</span> CHANGE ITEMS
+                        </button>
+                        <h2 class="font-headline-sm text-pearl-white mb-8 italic">Patron Details</h2>
+                        <div class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="font-label-caps text-[10px] text-muted-text">FULL NAME</label>
+                                    <input class="w-full bg-obsidian border border-saffron-gold/20 rounded-none p-4 text-pearl-white focus:ring-0 focus:outline-none focus:border-saffron-gold transition-all" placeholder="Althaf Hussain" type="text" id="order-name"/>
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="font-label-caps text-[10px] text-muted-text">PHONE NUMBER</label>
+                                    <input class="w-full bg-obsidian border border-saffron-gold/20 rounded-none p-4 text-pearl-white focus:ring-0 focus:outline-none focus:border-saffron-gold transition-all" placeholder="+91 98765 43210" type="tel" id="order-phone"/>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="font-label-caps text-[10px] text-muted-text">ORDER DATE</label>
+                                    <input class="w-full bg-obsidian border border-saffron-gold/20 rounded-none p-4 text-pearl-white focus:ring-0 focus:outline-none focus:border-saffron-gold transition-all" type="date" id="order-date"/>
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="font-label-caps text-[10px] text-muted-text">PREFERRED TIME SLOT</label>
+                                    <select class="w-full bg-obsidian border border-saffron-gold/20 rounded-none p-4 text-pearl-white focus:ring-0 focus:outline-none focus:border-saffron-gold transition-all" id="order-time">
+                                        <option>12:30 PM (Lunch Unveiling)</option>
+                                        <option>01:30 PM</option>
+                                        <option>07:30 PM (Dinner Unveiling)</option>
+                                        <option>08:30 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="font-label-caps text-[10px] text-muted-text">SPECIAL DIRECTIONS / REMARKS</label>
+                                <textarea class="w-full bg-obsidian border border-saffron-gold/20 rounded-none p-4 text-pearl-white focus:ring-0 focus:outline-none focus:border-saffron-gold transition-all resize-none" placeholder="Extra spicy masala, double onions, home address for delivery..." rows="3" id="order-notes"></textarea>
+                            </div>
+                        </div>
+                        <button class="w-full mt-12 py-4 bg-saffron-gold text-obsidian font-label-caps text-xs font-bold tracking-widest hover:opacity-90 active:scale-[0.98] transition-all shadow-[0_0_20px_rgba(245,193,7,0.2)]" onclick="sendOrderViaWhatsApp()">
+                            ORDER VIA WHATSAPP
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-obsidian py-section-padding-desktop border-t-2 border-saffron-gold">
+        <div class="max-w-container-max mx-auto px-gutter flex flex-col items-center gap-base text-center">
+            <img src="IMAGES/logo.png" alt="Kaiz Kitchen Logo" class="h-24 w-auto object-contain mb-4 mx-auto" />
+            <div class="flex flex-wrap justify-center gap-gutter mb-8">
+                <a class="font-body-md text-muted-text hover:text-pearl-white transition-colors" href="#">Privacy Policy</a>
+                <a class="font-body-md text-muted-text hover:text-pearl-white transition-colors" href="#">Terms of Service</a>
+                <a class="font-body-md text-muted-text hover:text-pearl-white transition-colors" href="#">Contact Us</a>
+                <a class="font-body-md text-muted-text hover:text-pearl-white transition-colors" href="#">Careers</a>
+            </div>
+            <p class="font-body-md text-on-surface-variant max-w-lg mb-8 italic">"Hey, Still starving for Biriyani? Let's break it!"</p>
+            <div class="flex gap-10 mb-8">
+                <a class="text-saffron-gold font-label-caps text-xs" href="tel:+917907267371">P: 7907267371</a>
+            </div>
+            <p class="font-body-md text-muted-text text-sm">© 2024 Kaiz Kitchen. Thrissur's Biriyani Institution.</p>
+        </div>
+    </footer>
+    
+    <!-- Floating WhatsApp -->
+    <a class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform" href="https://wa.me/917907267371" target="_blank">
+        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.66.986 3.292 1.48 4.961 1.48 5.384 0 9.75-4.372 9.752-9.756.002-2.607-1.012-5.059-2.859-6.907C16.599 2.124 14.137.893 11.53.893 6.152.893 1.782 5.266 1.78 10.652c-.001 1.77.462 3.498 1.402 5.078l-.361 1.321 1.348-.353 3.878 1.456zM17.13 14.86c-.29-.145-1.72-.85-1.985-.947-.268-.098-.463-.146-.659.145-.195.29-.757.947-.927 1.14-.17.194-.34.217-.63.072-.29-.145-1.226-.452-2.335-1.44-.863-.77-1.446-1.722-1.616-2.013-.17-.29-.018-.447.127-.59.13-.13.29-.34.435-.51.145-.17.193-.29.29-.485.097-.193.048-.363-.024-.51-.07-.145-.658-1.586-.902-2.17-.238-.574-.48-.495-.659-.504-.17-.008-.364-.01-.557-.01-.193 0-.507.072-.772.36-.265.29-1.01 1.01-1.01 2.458 0 1.448 1.054 2.85 1.198 3.04.145.195 2.076 3.17 5.028 4.444.702.302 1.25.483 1.677.619.706.224 1.348.193 1.856.117.564-.084 1.72-.702 1.962-1.38.242-.678.242-1.258.17-1.38-.072-.12-.268-.194-.558-.34z"/>
+        </svg>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        // Menu Items Data for Calculator
+        const menuItems = [
+            { id: 'cb', name: 'Chicken Dum Biriyani', price: 150 },
+            { id: 'bb', name: 'Beef Dum Biriyani', price: 160 },
+            { id: 'mb', name: 'Mutton Dum Biriyani', price: 260 },
+            { id: 'ck', name: 'Chicken Kondattam', price: 80 },
+            { id: 'br', name: 'Malabar Beef Roast', price: 120 },
+            { id: 'ks', name: 'Kaiz Sulaimani', price: 20 },
+            { id: 'mr', name: 'Mint Raita (Extra)', price: 15 }
+        ];
+
+        // Quantities state
+        const quantities = {};
+        menuItems.forEach(item => quantities[item.id] = 0);
+
+        // Render Menu Items list in Step 2
+        const listContainer = document.getElementById('menu-items-list');
+        if (listContainer) {
+            menuItems.forEach(item => {
+                const row = document.createElement('div');
+                row.className = 'flex justify-between items-center bg-obsidian p-4 border border-saffron-gold/10';
+                row.innerHTML = `
+                    <div>
+                        <h4 class="font-bold text-pearl-white text-sm">${item.name}</h4>
+                        <span class="text-xs text-saffron-gold">₹${item.price}</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <button class="w-8 h-8 rounded-full border border-saffron-gold/20 flex items-center justify-center text-saffron-gold font-bold hover:bg-saffron-gold/10 transition-colors" onclick="changeQty('${item.id}', -1)">-</button>
+                        <span class="text-pearl-white w-6 text-center font-bold" id="qty-${item.id}">0</span>
+                        <button class="w-8 h-8 rounded-full border border-saffron-gold/20 flex items-center justify-center text-saffron-gold font-bold hover:bg-saffron-gold/10 transition-colors" onclick="changeQty('${item.id}', 1)">+</button>
+                    </div>
+                `;
+                listContainer.appendChild(row);
+            });
+        }
+
+        // Change Quantity and Update Total
+        window.changeQty = function(id, val) {
+            quantities[id] = Math.max(0, quantities[id] + val);
+            const qtyDisplay = document.getElementById(`qty-${id}`);
+            if (qtyDisplay) qtyDisplay.innerText = quantities[id];
+            updateTotal();
+        }
+
+        function updateTotal() {
+            let total = 0;
+            menuItems.forEach(item => {
+                total += item.price * quantities[item.id];
+            });
+            const totalDisplay = document.getElementById('order-total-display');
+            if (totalDisplay) totalDisplay.innerText = `₹${total}`;
+        }
+
+        // Send Order Formatted Message via WhatsApp
+        window.sendOrderViaWhatsApp = function() {
+            const name = document.getElementById('order-name').value || 'Guest';
+            const phone = document.getElementById('order-phone').value || 'N/A';
+            const branch = document.querySelector('input[name="branch"]:checked')?.value || 'poothole';
+            const mode = document.querySelector('input[name="mode"]:checked')?.value || 'takeaway';
+            const date = document.getElementById('order-date').value || 'As soon as possible';
+            const time = document.getElementById('order-time').value || '';
+            const notes = document.getElementById('order-notes').value || 'None';
+
+            let itemsText = '';
+            let total = 0;
+
+            menuItems.forEach(item => {
+                const qty = quantities[item.id];
+                if (qty > 0) {
+                    const cost = item.price * qty;
+                    itemsText += `- ${item.name} x ${qty} (₹${cost})\n`;
+                    total += cost;
+                }
+            });
+
+            if (total === 0) {
+                alert('Please select at least one item.');
+                return;
+            }
+
+            const formattedMessage = `Hello Kaiz Kitchen! I would like to place a Food Order:\n\n` +
+                                     `*Order Details:*\n` +
+                                     `${itemsText}` +
+                                     `--------------------------\n` +
+                                     `*Total Amount:* ₹${total}\n\n` +
+                                     `*Order Info:*\n` +
+                                     `- Name: ${name}\n` +
+                                     `- Phone: ${phone}\n` +
+                                     `- Branch: ${branch.toUpperCase()}\n` +
+                                     `- Dine-in/Takeaway: ${mode.toUpperCase()}\n` +
+                                     `- Date: ${date}\n` +
+                                     `- Time Slot: ${time}\n` +
+                                     `- Special Instructions: ${notes}`;
+
+            const whatsappUrl = `https://wa.me/917907267371?text=${encodeURIComponent(formattedMessage)}`;
+            
+            // Show Success UI
+            const formContainer = document.querySelector('.bg-charcoal-surface');
+            formContainer.innerHTML = `
+                <div class="flex flex-col items-center justify-center py-20 text-center animate-pulse">
+                    <span class="material-symbols-outlined text-saffron-gold text-6xl mb-6">verified</span>
+                    <h2 class="font-headline-sm text-pearl-white mb-4">Redirecting to WhatsApp...</h2>
+                    <p class="text-muted-text font-body-md max-w-sm">Please send the pre-filled message on WhatsApp to complete your order. If it doesn't open automatically, click the button below.</p>
+                    <a href="${whatsappUrl}" target="_blank" class="mt-8 bg-saffron-gold text-obsidian px-8 py-3 font-label-caps text-xs font-bold shadow-[0_0_15px_rgba(245,193,7,0.3)]">SEND MANUALLY</a>
+                    <button onclick="location.reload()" class="mt-8 text-saffron-gold underline font-label-caps text-xs block">BACK TO ORDER FORM</button>
+                </div>
+            `;
+            
+            window.location.href = whatsappUrl;
+        }
+
+        // Toggle mobile menu
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+        if (menuBtn && mobileNav) {
+            menuBtn.addEventListener('click', () => {
+                mobileNav.classList.toggle('hidden');
+                mobileNav.classList.toggle('flex');
+            });
+        }
+
+        // Navigation scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('top-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.scroll-reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Floating particles generator
+        (function() {
+            const container = document.getElementById('particle-container');
+            if (!container) return;
+
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'gold-dust';
+                
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                particle.style.left = `${Math.random() * 100}vw`;
+                
+                const duration = Math.random() * 8 + 12;
+                particle.style.animation = `riseUp ${duration}s linear infinite`;
+                particle.style.animationDelay = `${Math.random() * -5}s`;
+                
+                container.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, duration * 1000);
+            }
+
+            for (let i = 0; i < 35; i++) {
+                createParticle();
+            }
+            setInterval(createParticle, 500);
+        })();
+
+        // WebGL Liquid Gold Shader
+        (function() {
+            const canvas = document.getElementById('shader-bg');
+            if (!canvas) return;
+
+            function syncSize() {
+                const w = window.innerWidth;
+                const h = window.innerHeight;
+                if (canvas.width !== w || canvas.height !== h) {
+                    canvas.width  = w;
+                    canvas.height = h;
+                }
+            }
+            window.addEventListener('resize', syncSize);
+            syncSize();
+
+            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            if (!gl) return;
+            
+            const vs = `attribute vec2 a_position;
+            varying vec2 v_texCoord;
+            void main() {
+                v_texCoord = a_position * 0.5 + 0.5;
+                gl_Position = vec4(a_position, 0.0, 1.0);
+            }`;
+            
+            const fs = `precision highp float;
+            uniform float u_time;
+            uniform vec2 u_resolution;
+            uniform vec2 u_mouse;
+            varying vec2 v_texCoord;
+
+            void main() {
+                vec2 uv = v_texCoord;
+                
+                float time = u_time * 0.15;
+                
+                float wave1 = sin(uv.x * 10.0 + time + sin(uv.y * 5.0 + time));
+                float wave2 = cos(uv.y * 8.0 - time + cos(uv.x * 4.0 - time));
+                float intensity = (wave1 + wave2) * 0.5 + 0.5;
+                
+                vec3 goldColor = vec3(0.96, 0.75, 0.03);
+                vec3 obsidian = vec3(0.05, 0.05, 0.05);
+                
+                vec3 color = mix(obsidian, goldColor * 0.15, intensity * 0.4);
+                
+                vec2 m = u_mouse / u_resolution;
+                float dist = distance(uv, m);
+                float glow = smoothstep(0.3, 0.0, dist) * 0.05;
+                color += goldColor * glow;
+
+                gl_FragColor = vec4(color, 1.0);
+            }`;
+
+            function cs(type, src) {
+                const s = gl.createShader(type);
+                gl.shaderSource(s, src);
+                gl.compileShader(s);
+                return s;
+            }
+            
+            const prog = gl.createProgram();
+            gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+            gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+            gl.linkProgram(prog);
+            gl.useProgram(prog);
+            
+            const buf = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+            
+            const pos = gl.getAttribLocation(prog, 'a_position');
+            gl.enableVertexAttribArray(pos);
+            gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+            
+            const uTime = gl.getUniformLocation(prog, 'u_time');
+            const uRes = gl.getUniformLocation(prog, 'u_resolution');
+            const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+            let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+            window.addEventListener('mousemove', (event) => {
+                const rect = canvas.getBoundingClientRect();
+                if (rect.width && rect.height) {
+                    const nx = (event.clientX - rect.left) / rect.width;
+                    const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+                    mouse.x = nx * canvas.width;
+                    mouse.y = ny * canvas.height;
+                }
+            });
+
+            function render(t) {
+                gl.viewport(0, 0, canvas.width, canvas.height);
+                if (uTime) gl.uniform1f(uTime, t * 0.001);
+                if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+                if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+                gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+                requestAnimationFrame(render);
+            }
+            render(0);
+        })();
+
+        // Step transition logic
+        window.nextStep = function(step) {
+            const steps = [1, 2, 3];
+            steps.forEach(s => {
+                const el = document.getElementById(`step-${s}`);
+                el.classList.add('hidden', 'opacity-0', 'translate-x-12');
+                el.classList.remove('block', 'opacity-100', 'translate-x-0');
+            });
+
+            const activeEl = document.getElementById(`step-${step}`);
+            activeEl.classList.remove('hidden');
+            setTimeout(() => {
+                activeEl.classList.add('block', 'opacity-100', 'translate-x-0');
+                activeEl.classList.remove('opacity-0', 'translate-x-12');
+            }, 50);
+
+            updateProgress(step);
+        }
+
+        function updateProgress(step) {
+            for (let i = 1; i <= 3; i++) {
+                const indicator = document.getElementById(`step-indicator-${i}`);
+                const line = document.getElementById(`progress-line-${i-1}`);
+                
+                if (i < step) {
+                    indicator.classList.replace('border-saffron-gold/20', 'border-saffron-gold');
+                    indicator.classList.replace('text-muted-text', 'text-obsidian');
+                    indicator.classList.add('bg-saffron-gold');
+                    indicator.innerHTML = '<span class="material-symbols-outlined text-sm font-bold">check</span>';
+                    if (line) line.style.width = '100%';
+                } else if (i === step) {
+                    indicator.classList.replace('border-saffron-gold/20', 'border-saffron-gold');
+                    indicator.classList.replace('text-muted-text', 'text-obsidian');
+                    indicator.classList.add('bg-saffron-gold');
+                    indicator.innerHTML = i;
+                    if (line) line.style.width = '100%';
+                } else {
+                    indicator.classList.replace('border-saffron-gold', 'border-saffron-gold/20');
+                    indicator.classList.replace('text-obsidian', 'text-muted-text');
+                    indicator.classList.remove('bg-saffron-gold');
+                    indicator.innerHTML = i;
+                    if (line) line.style.width = '0%';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

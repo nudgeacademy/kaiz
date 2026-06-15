@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Kaiz Kitchen | Thrissur's Most Aromatic Legacy</title>
+    <link rel="icon" type="image/png" href="IMAGES/logo.png" />
+    <script src="tailwind.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ffb4ab",
+                        "on-error-container": "#ffdad6",
+                        "on-surface": "#e5e2e1",
+                        "on-tertiary-fixed": "#001f28",
+                        "on-secondary-container": "#4d3e00",
+                        "surface-variant": "#353534",
+                        "outline-variant": "#4e4632",
+                        "on-error": "#690005",
+                        "secondary-fixed": "#ffe17b",
+                        "tertiary-fixed-dim": "#4bd6fe",
+                        "on-primary-container": "#685000",
+                        "on-background": "#e5e2e1",
+                        "outline": "#9b9078",
+                        "inverse-on-surface": "#313030",
+                        "charcoal-surface": "#1A1A1A",
+                        "on-primary-fixed-variant": "#594400",
+                        "on-secondary": "#3b2f00",
+                        "secondary-fixed-dim": "#eac32b",
+                        "surface-dim": "#131313",
+                        "on-secondary-fixed": "#231b00",
+                        "surface-bright": "#3a3939",
+                        "surface": "#131313",
+                        "on-primary-fixed": "#241a00",
+                        "primary-fixed-dim": "#f3c003",
+                        "surface-tint": "#f3c003",
+                        "surface-container": "#201f1f",
+                        "secondary-container": "#cca800",
+                        "tertiary": "#b9ecff",
+                        "background": "#131313",
+                        "saffron-gold": "#F5C107",
+                        "primary-container": "#f5c107",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-secondary-fixed-variant": "#564500",
+                        "tertiary-container": "#4dd7ff",
+                        "surface-container-low": "#1c1b1b",
+                        "on-primary": "#3d2e00",
+                        "inverse-primary": "#755b00",
+                        "on-surface-variant": "#d2c5ac",
+                        "primary-fixed": "#ffdf91",
+                        "pearl-white": "#FFFFFF",
+                        "obsidian": "#0D0D0D",
+                        "tertiary-fixed": "#b5ebff",
+                        "on-tertiary-fixed-variant": "#004e60",
+                        "surface-container-highest": "#353534",
+                        "on-tertiary": "#003543",
+                        "inverse-surface": "#e5e2e1",
+                        "muted-text": "#AAAAAA",
+                        "warm-accent": "#FFD740",
+                        "error-container": "#93000a",
+                        "primary": "#ffe198",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary": "#eac32b",
+                        "on-tertiary-container": "#005b70"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "section-padding-mobile": "48px",
+                        "section-padding-desktop": "80px"
+                    },
+                    "fontFamily": {
+                        "price-display": ["Plus Jakarta Sans"],
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-sm": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "price-display": ["20px", {"lineHeight": "1.0", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.2em", "fontWeight": "700"}],
+                        "headline-md": ["48px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "headline-sm": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg-mobile": ["40px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0D0D0D;
+            background-image: 
+                linear-gradient(rgba(245, 193, 7, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(245, 193, 7, 0.04) 1px, transparent 1px),
+                radial-gradient(rgba(245, 193, 7, 0.05) 1.5px, transparent 1.5px);
+            background-size: 80px 80px, 80px 80px, 20px 20px;
+            background-position: -1px -1px, -1px -1px, 10px 10px;
+        }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .gold-dust { position: absolute; pointer-events: none; border-radius: 50%; background: #F5C107; opacity: 0.3; filter: blur(1px); z-index: 5; }
+        .scroll-reveal { opacity: 0; transform: translateY(50px) scale(0.95); filter: blur(5px); transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .scroll-reveal.active { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        .nav-scrolled { background-color: #0D0D0D !important; border-bottom: 1px solid rgba(245, 193, 7, 0.1); }
+        .menu-card-glow:hover { box-shadow: 0 0 20px rgba(245, 193, 7, 0.15); border-color: #F5C107 !important; }
+        .line-draw { height: 2px; width: 0; background: #F5C107; transition: width 0.8s ease-in-out; }
+        .active .line-draw { width: 100px; }
+        .marquee { overflow: hidden; white-space: nowrap; }
+        .marquee-inner { display: inline-block; animation: marquee 30s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* iOS-safe hero height */
+        .hero-ios {
+            height: 100vh;
+            height: 100dvh;
+        }
+        @supports (-webkit-touch-callout: none) {
+            .hero-ios { height: -webkit-fill-available; }
+        }
+        .hero-img {
+            object-position: center 45%;
+        }
+        @media (max-width: 768px) {
+            .hero-img { object-position: 40% 45%; }
+        }
+
+        /* Floating Hero Animation */
+        @keyframes floatHero {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-15px) scale(1.02); }
+        }
+        .hero-float { animation: floatHero 6s ease-in-out infinite; }
+
+        /* Pulsing Glow for Process Numbers */
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 10px rgba(245, 193, 7, 0.1); opacity: 0.2; }
+            50% { box-shadow: 0 0 30px rgba(245, 193, 7, 0.4); opacity: 0.4; }
+        }
+        .step-glow { position: absolute; inset: 0; background: radial-gradient(circle, #F5C107 0%, transparent 70%); animation: pulseGlow 4s ease-in-out infinite; pointer-events: none; }
+
+        #shader-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            opacity: 0.4;
+        }
+        
+        #particle-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 15;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        /* Particle motion */
+        @keyframes riseUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        /* Staggered Fade Up for Hero Text */
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .hero-text-anim {
+            opacity: 0;
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .hero-anim-1 { animation-delay: 0.2s; }
+        .hero-anim-2 { animation-delay: 0.4s; }
+        .hero-anim-3 { animation-delay: 0.6s; }
+        .hero-anim-4 { animation-delay: 0.8s; }
+
+        /* Professional Ken Burns Effect for Background */
+        @keyframes bgScalePan {
+            0% { transform: scale(1) translate(0, 0); }
+            50% { transform: scale(1.1) translate(-1%, -1%); }
+            100% { transform: scale(1) translate(0, 0); }
+        }
+        .hero-bg-anim {
+            animation: bgScalePan 30s ease-in-out infinite;
+            will-change: transform;
+        }
+
+        /* Shine effect on primary button */
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
+        }
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shine::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
+            transform: skewX(-20deg);
+            animation: shine 4s infinite;
+        }
+
+
+
+    </style>
+</head>
+<body class="bg-obsidian text-on-surface font-body-md overflow-x-hidden">
+
+    
+    <!-- Top Navigation -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300 bg-transparent backdrop-blur-md border-b border-saffron-gold/10 px-gutter py-base" id="top-nav">
+        <div class="max-w-container-max mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center"><img src="IMAGES/logo.png" alt="Kaiz Kitchen Logo" class="h-12 md:h-16 w-auto object-contain" /></a>
+            <div class="hidden md:flex gap-gutter items-center">
+                <a class="font-body-md text-body-md uppercase tracking-widest text-saffron-gold hover:text-saffron-gold transition-colors font-bold underline underline-offset-8" href="index.html">Home</a>
+                <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="philosophy.html">Heritage</a>
+                <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="menu.html">Menu</a>
+                <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="#catering">Catering</a>
+                <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="#branches">Branches</a>
+            </div>
+            <button class="md:hidden text-saffron-gold" id="menu-btn">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+        <!-- Mobile Dropdown Menu -->
+        <div class="hidden flex-col gap-4 mt-4 pb-4 border-t border-saffron-gold/10 md:hidden" id="mobile-nav">
+            <a class="font-body-md text-body-md uppercase tracking-widest text-saffron-gold hover:text-saffron-gold transition-colors font-bold underline underline-offset-8" href="index.html">Home</a>
+            <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="philosophy.html">Heritage</a>
+            <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="menu.html">Menu</a>
+            <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="#catering">Catering</a>
+            <a class="font-body-md text-body-md uppercase tracking-widest text-on-surface-variant hover:text-saffron-gold transition-colors" href="#branches">Branches</a>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="relative hero-ios flex items-center justify-center overflow-hidden bg-obsidian">
+        <!-- WebGL Background -->
+    <!-- WebGL Background Removed -->
+        <!-- Aromatic Particles Container -->
+        <div id="particle-container"></div>
+        <div class="absolute inset-0 z-0 overflow-hidden">
+            <img alt="Cinematic Biriyani" class="w-full h-full object-cover opacity-60 hero-img hero-bg-anim" src="IMAGES/KAIZ%20KITCHEN%20HERO.png?v=2"/>
+            <div class="absolute inset-0 bg-gradient-to-b from-obsidian/40 via-transparent to-obsidian"></div>
+        </div>
+        <div class="relative z-20 text-center px-gutter max-w-4xl">
+            <span class="font-label-caps text-label-caps text-saffron-gold mb-4 block hero-text-anim hero-anim-1">EST. THRISSUR · SINCE 2018</span>
+            <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-pearl-white mb-6 hero-text-anim hero-anim-2">Thrissur's Most Aromatic Legacy</h1>
+            <p class="font-body-lg text-body-lg text-muted-text mb-10 max-w-2xl mx-auto hero-text-anim hero-anim-3">Malabar Dum Biriyani crafted with heritage spices and slow-cooked to perfection. Where every grain tells a story of royalty.</p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center hero-text-anim hero-anim-4">
+                <a class="bg-saffron-gold text-obsidian px-10 py-4 font-label-caps text-label-caps hover:scale-105 transition-transform btn-shine" href="#branches">Find Your Branch</a>
+                <a class="border border-saffron-gold text-saffron-gold px-10 py-4 font-label-caps text-label-caps hover:bg-saffron-gold/10 transition-colors" href="#catering">Book Catering</a>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce z-20">
+            <span class="material-symbols-outlined text-saffron-gold">keyboard_double_arrow_down</span>
+        </div>
+    </section>
+
+    <!-- Brand Story Section -->
+    <section class="py-section-padding-desktop bg-transparent relative" id="heritage">
+        <div class="max-w-container-max mx-auto px-gutter grid md:grid-cols-2 gap-section-padding-mobile items-center">
+            <div class="relative">
+                <div class="absolute left-0 top-0 bottom-0 w-px bg-saffron-gold/30"></div>
+                <div class="pl-12 space-y-24 py-12">
+                    <div class="relative scroll-reveal">
+                        <div class="absolute -left-[53px] top-2 w-2.5 h-2.5 bg-saffron-gold rounded-full shadow-[0_0_10px_#F5C107]"></div>
+                        <h4 class="font-label-caps text-label-caps text-saffron-gold mb-2">The Inception</h4>
+                        <p class="font-body-md text-body-md text-on-surface">Born from a single pot in a small kitchen, Kaiz began with one mission: to bring the authentic aroma of Malabar Dum to the heart of Thrissur.</p>
+                    </div>
+                    <div class="relative scroll-reveal">
+                        <div class="absolute -left-[53px] top-2 w-2.5 h-2.5 bg-saffron-gold rounded-full shadow-[0_0_10px_#F5C107]"></div>
+                        <h4 class="font-label-caps text-label-caps text-saffron-gold mb-2">Community Love</h4>
+                        <p class="font-body-md text-body-md text-on-surface">As the word spread, so did the lines. Our "Hidden Gem" became a community landmark, celebrated for consistency and soul.</p>
+                    </div>
+                    <div class="relative scroll-reveal">
+                        <div class="absolute -left-[53px] top-2 w-2.5 h-2.5 bg-saffron-gold rounded-full shadow-[0_0_10px_#F5C107]"></div>
+                        <h4 class="font-label-caps text-label-caps text-saffron-gold mb-2">The Legacy Expands</h4>
+                        <p class="font-body-md text-body-md text-on-surface">Today, with three branches and a legendary catering service, we remain committed to the slow-cooked tradition that started it all.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-reveal">
+                <h2 class="font-headline-md text-headline-md text-pearl-white mb-8 italic">"The aromatic flavored biriyani which can take you back to a memorable moment."</h2>
+                <p class="font-body-lg text-body-lg text-muted-text mb-12">At Kaiz Kitchen, we don't just cook; we curate an experience. Every spice is hand-selected, every grain of rice is nurtured, and every pot is sealed with a promise of authenticity. Our heritage is rooted in the narrow streets of Malabar, brought to life in the vibrant landscape of Thrissur.</p>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Signature Menu Section -->
+    <section class="py-section-padding-desktop bg-transparent text-pearl-white overflow-hidden" id="menu">
+        <div class="max-w-container-max mx-auto px-gutter">
+            <div class="text-center mb-20 scroll-reveal">
+                <span class="font-label-caps text-label-caps text-saffron-gold block mb-4">CURATED SELECTIONS</span>
+                <h2 class="font-headline-md text-headline-md mb-4">The Kaiz Menu</h2>
+                <div class="line-draw mx-auto"></div>
+                <p class="mt-8 font-body-md text-body-md max-w-xl mx-auto italic text-muted-text">Unlimited rice included with every full biriyani order. Experience the true scale of Malabar hospitality.</p>
+            </div>
+            <div class="max-w-4xl mx-auto space-y-12">
+                <!-- Item 1 -->
+                <div class="flex flex-col gap-2 group cursor-pointer" onclick="window.location.href='menu.html'">
+                    <div class="flex items-end justify-between gap-4">
+                        <h3 class="font-headline-sm text-2xl md:text-3xl text-pearl-white italic leading-none group-hover:text-saffron-gold transition-colors">Chicken Biriyani</h3>
+                        <div class="flex-grow border-b-2 border-dotted border-saffron-gold/30 mb-1.5 md:mb-2 transition-all group-hover:border-saffron-gold/70"></div>
+                        <span class="text-saffron-gold font-price-display text-2xl md:text-3xl">₹150</span>
+                    </div>
+                    <p class="text-muted-text font-body-md text-sm md:text-base max-w-2xl group-hover:text-pearl-white/80 transition-colors">Slow-cooked succulent chicken pieces layered with aromatic long-grain rice and our secret spice blend.</p>
+                </div>
+                
+                <!-- Item 2 (Signature) -->
+                <div class="flex flex-col gap-2 group cursor-pointer" onclick="window.location.href='menu.html#specialties'">
+                    <div class="flex items-end justify-between gap-4">
+                        <div class="flex items-baseline gap-3">
+                            <h3 class="font-headline-sm text-2xl md:text-3xl text-saffron-gold italic leading-none drop-shadow-[0_0_8px_rgba(245,193,7,0.3)]">Chicken Kondattam</h3>
+                            <span class="hidden md:inline-block bg-saffron-gold text-obsidian px-2 py-0.5 font-label-caps text-[10px] font-extrabold uppercase rounded-sm translate-y-[-4px]">Signature</span>
+                        </div>
+                        <div class="flex-grow border-b-2 border-dotted border-saffron-gold/30 mb-1.5 md:mb-2 transition-all group-hover:border-saffron-gold/70"></div>
+                        <span class="text-saffron-gold font-price-display text-2xl md:text-3xl">₹80</span>
+                    </div>
+                    <p class="text-muted-text font-body-md text-sm md:text-base max-w-2xl group-hover:text-pearl-white/80 transition-colors">A fiery, sun-dried chili fried chicken specialty. Intense flavors that define the Kaiz signature experience.</p>
+                </div>
+                
+                <!-- Item 3 -->
+                <div class="flex flex-col gap-2 group cursor-pointer" onclick="window.location.href='menu.html'">
+                    <div class="flex items-end justify-between gap-4">
+                        <h3 class="font-headline-sm text-2xl md:text-3xl text-pearl-white italic leading-none group-hover:text-saffron-gold transition-colors">Beef Biriyani</h3>
+                        <div class="flex-grow border-b-2 border-dotted border-saffron-gold/30 mb-1.5 md:mb-2 transition-all group-hover:border-saffron-gold/70"></div>
+                        <span class="text-saffron-gold font-price-display text-2xl md:text-3xl">₹160</span>
+                    </div>
+                    <p class="text-muted-text font-body-md text-sm md:text-base max-w-2xl group-hover:text-pearl-white/80 transition-colors">Tender beef cuts slow-marinated and dum-cooked to melting perfection. A local favorite.</p>
+                </div>
+            </div>
+            <div class="mt-12 text-center">
+                <a class="font-label-caps text-label-caps text-pearl-white border-b-2 border-saffron-gold pb-1 hover:text-saffron-gold transition-colors" href="menu.html">VIEW FULL MENU</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Dum Process Section -->
+    <section class="py-16 md:py-section-padding-desktop bg-transparent overflow-hidden">
+        <div class="max-w-container-max mx-auto px-gutter">
+            <div class="text-center mb-16 scroll-reveal">
+                <span class="font-label-caps text-label-caps text-saffron-gold block mb-4">THE RITUAL</span>
+                <h2 class="font-headline-md text-headline-md text-pearl-white mb-4">The Art of Dum</h2>
+                <div class="line-draw mx-auto"></div>
+                <p class="mt-8 font-body-md text-body-md max-w-xl mx-auto text-muted-text">Our process is a time-capsule of tradition, ensuring every pot delivered is as fresh as the first one of the day.</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+                <!-- Step 1 -->
+                <div class="group relative overflow-hidden aspect-[3/4] rounded-lg cursor-pointer" onclick="window.location.href='philosophy.html'">
+                    <img alt="Marination" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60" src="IMAGES/img_1ebd0856.jpg"/>
+                    <div class="absolute inset-0 p-4 md:p-8 flex flex-col justify-end items-center text-center bg-gradient-to-t from-obsidian via-transparent to-transparent">
+                        <div class="relative w-fit mx-auto mb-2 md:mb-4">
+                            <div class="step-glow rounded-full"></div>
+                            <span class="text-3xl md:text-6xl font-headline-md text-saffron-gold/20 group-hover:text-saffron-gold transition-colors duration-500 relative z-10">01</span>
+                        </div>
+                        <h4 class="font-headline-sm text-lg md:text-xl text-pearl-white mb-1 md:mb-2 whitespace-nowrap">Marination</h4>
+                        <p class="text-[10px] md:text-xs text-muted-text leading-relaxed opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-500 whitespace-nowrap">Overnight spice blend.</p>
+                    </div>
+                </div>
+                <!-- Step 2 -->
+                <div class="group relative overflow-hidden aspect-[3/4] rounded-lg cursor-pointer" onclick="window.location.href='philosophy.html'">
+                    <img alt="Central Kitchen" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60" src="IMAGES/img_eb18b163.jpg"/>
+                    <div class="absolute inset-0 p-4 md:p-8 flex flex-col justify-end items-center text-center bg-gradient-to-t from-obsidian via-transparent to-transparent">
+                        <div class="relative w-fit mx-auto mb-2 md:mb-4">
+                            <div class="step-glow rounded-full"></div>
+                            <span class="text-3xl md:text-6xl font-headline-md text-saffron-gold/20 group-hover:text-saffron-gold transition-colors duration-500 relative z-10">02</span>
+                        </div>
+                        <h4 class="font-headline-sm text-lg md:text-xl text-pearl-white mb-1 md:mb-2 whitespace-nowrap">Preparation</h4>
+                        <p class="text-[10px] md:text-xs text-muted-text leading-relaxed opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-500 whitespace-nowrap">Cooked by experts.</p>
+                    </div>
+                </div>
+                <!-- Step 3 -->
+                <div class="group relative overflow-hidden aspect-[3/4] rounded-lg cursor-pointer" onclick="window.location.href='philosophy.html'">
+                    <img alt="Sealed &amp; Steamed" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60" src="IMAGES/img_8850236a.jpg"/>
+                    <div class="absolute inset-0 p-4 md:p-8 flex flex-col justify-end items-center text-center bg-gradient-to-t from-obsidian via-transparent to-transparent">
+                        <div class="relative w-fit mx-auto mb-2 md:mb-4">
+                            <div class="step-glow rounded-full"></div>
+                            <span class="text-3xl md:text-6xl font-headline-md text-saffron-gold/20 group-hover:text-saffron-gold transition-colors duration-500 relative z-10">03</span>
+                        </div>
+                        <h4 class="font-headline-sm text-lg md:text-xl text-pearl-white mb-1 md:mb-2 whitespace-nowrap">Dum Sealing</h4>
+                        <p class="text-[10px] md:text-xs text-muted-text leading-relaxed opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-500 whitespace-nowrap">Sealed for rich aroma.</p>
+                    </div>
+                </div>
+                <!-- Step 4 -->
+                <div class="group relative overflow-hidden aspect-[3/4] rounded-lg cursor-pointer" onclick="window.location.href='philosophy.html'">
+                    <img alt="Served Fresh" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60" src="IMAGES/img_1377dda3.jpg"/>
+                    <div class="absolute inset-0 p-4 md:p-8 flex flex-col justify-end items-center text-center bg-gradient-to-t from-obsidian via-transparent to-transparent">
+                        <div class="relative w-fit mx-auto mb-2 md:mb-4">
+                            <div class="step-glow rounded-full"></div>
+                            <span class="text-3xl md:text-6xl font-headline-md text-saffron-gold/20 group-hover:text-saffron-gold transition-colors duration-500 relative z-10">04</span>
+                        </div>
+                        <h4 class="font-headline-sm text-lg md:text-xl text-pearl-white mb-1 md:mb-2 whitespace-nowrap">Served Fresh</h4>
+                        <p class="text-[10px] md:text-xs text-muted-text leading-relaxed opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-500 whitespace-nowrap">Hot &amp; flavor-packed.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catering Section -->
+    <section class="py-section-padding-desktop bg-transparent border-y border-saffron-gold/10" id="catering">
+        <div class="max-w-container-max mx-auto px-gutter grid lg:grid-cols-2 gap-20 items-center">
+            <div class="scroll-reveal">
+                <span class="font-label-caps text-label-caps text-saffron-gold block mb-4">EVENTS &amp; GATHERINGS</span>
+                <h2 class="font-display-lg-mobile md:font-headline-md text-pearl-white mb-8">We Cater Your Legend</h2>
+                <div class="flex flex-wrap gap-4 mb-8">
+                    <span class="px-4 py-2 border border-saffron-gold/20 text-saffron-gold font-label-caps text-[10px]">WEDDINGS</span>
+                    <span class="px-4 py-2 border border-saffron-gold/20 text-saffron-gold font-label-caps text-[10px]">BIRTHDAYS</span>
+                    <span class="px-4 py-2 border border-saffron-gold/20 text-saffron-gold font-label-caps text-[10px]">CORPORATE</span>
+                    <span class="px-4 py-2 border border-saffron-gold/20 text-saffron-gold font-label-caps text-[10px]">SOCIALS</span>
+                </div>
+                <p class="font-body-lg text-body-lg text-muted-text mb-12">Full-service catering with an experienced team of professionals. From intimate family dinners to grand celebrations of 2000+, every occasion is treated with special care and authentic Malabar flavor.</p>
+                <div class="flex items-center gap-4 text-saffron-gold">
+                    <span class="material-symbols-outlined text-4xl">celebration</span>
+                    <p class="font-body-md italic">"We understand that every event has its own flavor"</p>
+                </div>
+            </div>
+            <div class="bg-charcoal-surface p-10 border-t-2 border-saffron-gold scroll-reveal">
+                <form class="space-y-6" id="catering-form">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-1">
+                            <label class="font-label-caps text-[10px] text-muted-text">YOUR NAME</label>
+                            <input class="w-full bg-transparent border-b border-muted-text/30 focus:border-saffron-gold transition-colors text-pearl-white p-2" type="text" id="catering-name" required/>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="font-label-caps text-[10px] text-muted-text">PHONE NUMBER</label>
+                            <input class="w-full bg-transparent border-b border-muted-text/30 focus:border-saffron-gold transition-colors text-pearl-white p-2" type="tel" id="catering-phone" required/>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-1">
+                            <label class="font-label-caps text-[10px] text-muted-text">EVENT TYPE</label>
+                            <select class="w-full bg-charcoal-surface border-b border-muted-text/30 focus:border-saffron-gold transition-colors text-pearl-white p-2" id="catering-event-type">
+                                <option>Wedding</option>
+                                <option>Birthday</option>
+                                <option>Corporate</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="font-label-caps text-[10px] text-muted-text">GUEST COUNT</label>
+                            <input class="w-full bg-transparent border-b border-muted-text/30 focus:border-saffron-gold transition-colors text-pearl-white p-2" type="number" id="catering-guests" required/>
+                        </div>
+                    </div>
+                    <div class="space-y-1">
+                        <label class="font-label-caps text-[10px] text-muted-text">DATE OF EVENT</label>
+                        <input class="w-full bg-transparent border-b border-muted-text/30 focus:border-saffron-gold transition-colors text-pearl-white p-2" type="date" id="catering-date" required/>
+                    </div>
+                    <div class="space-y-1">
+                        <label class="font-label-caps text-[10px] text-muted-text">ADDITIONAL NOTES</label>
+                        <textarea class="w-full bg-transparent border-b border-muted-text/30 focus:border-saffron-gold transition-colors text-pearl-white p-2" rows="3" id="catering-notes"></textarea>
+                    </div>
+                    <button class="w-full py-4 bg-saffron-gold text-obsidian font-label-caps text-xs font-bold tracking-[0.2em] hover:opacity-90 transition-opacity" type="submit">SEND ENQUIRY</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Branches Section -->
+    <section class="py-section-padding-desktop bg-transparent" id="branches">
+        <div class="max-w-container-max mx-auto px-gutter">
+            <div class="text-center mb-16 scroll-reveal">
+                <span class="font-label-caps text-label-caps text-saffron-gold block mb-4">OUR LOCATIONS</span>
+                <h2 class="font-headline-md text-headline-md text-pearl-white">Visit a Branch</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Branch 1 -->
+                <div class="bg-charcoal-surface p-8 group border-t-2 border-transparent hover:border-saffron-gold transition-all duration-300">
+                    <span class="inline-block bg-saffron-gold/10 text-saffron-gold px-3 py-1 rounded-full font-label-caps text-[10px] mb-6">BRANCH 01</span>
+                    <h3 class="font-headline-sm text-headline-sm text-pearl-white mb-4 italic">Poothole</h3>
+                    <p class="text-muted-text text-sm mb-6 leading-relaxed">Regency Centre, P&amp;T Quarters Rd, Poothole, Thrissur – 680004 (Near Railway Station)</p>
+                    <div class="space-y-4">
+                        <a class="flex items-center gap-3 text-pearl-white hover:text-saffron-gold transition-colors" href="tel:+919633332856">
+                            <span class="material-symbols-outlined text-saffron-gold text-sm">call</span>
+                            <span class="text-sm">+91 96333 32856</span>
+                        </a>
+                        <div class="flex gap-4 pt-4">
+                            <a class="bg-saffron-gold text-obsidian px-4 py-2 text-[10px] font-bold font-label-caps" href="https://wa.me/917907267371?text=Hi%20Kaiz%20Kitchen%2C%20I%20have%20an%20inquiry%20regarding%20Poothole%20Branch." target="_blank">WHATSAPP</a>
+                            <a class="border border-saffron-gold text-saffron-gold px-4 py-2 text-[10px] font-bold font-label-caps" href="https://maps.app.goo.gl/NkW8L" target="_blank">DIRECTIONS</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Branch 2 -->
+                <div class="bg-charcoal-surface p-8 group border-t-2 border-transparent hover:border-saffron-gold transition-all duration-300">
+                    <span class="inline-block bg-saffron-gold/10 text-saffron-gold px-3 py-1 rounded-full font-label-caps text-[10px] mb-6">BRANCH 02</span>
+                    <h3 class="font-headline-sm text-headline-sm text-pearl-white mb-4 italic">Ayyanthole</h3>
+                    <p class="text-muted-text text-sm mb-6 leading-relaxed">IK Arcade, Karshaka Nagar, Civil Lines Road, Ayyanthole, Thrissur – 680003</p>
+                    <div class="space-y-4">
+                        <a class="flex items-center gap-3 text-pearl-white hover:text-saffron-gold transition-colors" href="tel:+919633272857">
+                            <span class="material-symbols-outlined text-saffron-gold text-sm">call</span>
+                            <span class="text-sm">+91 96332 72857</span>
+                        </a>
+                        <div class="flex gap-4 pt-4">
+                            <a class="bg-saffron-gold text-obsidian px-4 py-2 text-[10px] font-bold font-label-caps" href="https://wa.me/917907267371?text=Hi%20Kaiz%20Kitchen%2C%20I%20have%20an%20inquiry%20regarding%20Ayyanthole%20Branch." target="_blank">WHATSAPP</a>
+                            <a class="border border-saffron-gold text-saffron-gold px-4 py-2 text-[10px] font-bold font-label-caps" href="https://maps.app.goo.gl/NkW8L" target="_blank">DIRECTIONS</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Branch 3 -->
+                <div class="bg-charcoal-surface p-8 group border-t-2 border-transparent hover:border-saffron-gold transition-all duration-300">
+                    <span class="inline-block bg-saffron-gold/10 text-saffron-gold px-3 py-1 rounded-full font-label-caps text-[10px] mb-6">BRANCH 03</span>
+                    <h3 class="font-headline-sm text-headline-sm text-pearl-white mb-4 italic">Chembukkav</h3>
+                    <p class="text-muted-text text-sm mb-6 leading-relaxed">Near Indoor Stadium, Naikkanal, Chembukkav, Thrissur – 680020</p>
+                    <div class="space-y-4">
+                        <a class="flex items-center gap-3 text-pearl-white hover:text-saffron-gold transition-colors" href="tel:+919633303408">
+                            <span class="material-symbols-outlined text-saffron-gold text-sm">call</span>
+                            <span class="text-sm">+91 96333 03408</span>
+                        </a>
+                        <div class="flex gap-4 pt-4">
+                            <a class="bg-saffron-gold text-obsidian px-4 py-2 text-[10px] font-bold font-label-caps" href="https://wa.me/917907267371?text=Hi%20Kaiz%20Kitchen%2C%20I%20have%20an%20inquiry%20regarding%20Chembukkav%20Branch." target="_blank">WHATSAPP</a>
+                            <a class="border border-saffron-gold text-saffron-gold px-4 py-2 text-[10px] font-bold font-label-caps" href="https://maps.app.goo.gl/NkW8L" target="_blank">DIRECTIONS</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Marquee -->
+    <section class="py-12 bg-charcoal-surface border-y border-saffron-gold/10 marquee">
+        <div class="marquee-inner flex gap-20">
+            <span class="text-pearl-white font-headline-sm italic opacity-50">"Smell hits you before the food arrives"</span>
+            <span class="text-pearl-white font-headline-sm italic opacity-50">"Hidden gem of Thrissur"</span>
+            <span class="text-pearl-white font-headline-sm italic opacity-50">"Chicken was very soft and delicious"</span>
+            <span class="text-pearl-white font-headline-sm italic opacity-50">"One of the best biriyani in Thrissur"</span>
+            <span class="text-pearl-white font-headline-sm italic opacity-50">"The masala was simply awesome"</span>
+            <span class="text-pearl-white font-headline-sm italic opacity-50">"Smell hits you before the food arrives"</span>
+            <span class="text-pearl-white font-headline-sm italic opacity-50">"Hidden gem of Thrissur"</span>
+            <span class="text-pearl-white font-headline-sm italic opacity-50">"Chicken was very soft and delicious"</span>
+            <span class="text-pearl-white font-headline-sm italic opacity-50">"One of the best biriyani in Thrissur"</span>
+            <span class="text-pearl-white font-headline-sm italic opacity-50">"The masala was simply awesome"</span>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="bg-obsidian py-section-padding-desktop border-t-2 border-saffron-gold">
+        <div class="max-w-container-max mx-auto px-gutter flex flex-col items-center gap-base text-center">
+            <img src="IMAGES/logo.png" alt="Kaiz Kitchen Logo" class="h-24 w-auto object-contain mb-4 mx-auto" />
+            <div class="flex flex-wrap justify-center gap-gutter mb-8">
+                <a class="font-body-md text-muted-text hover:text-pearl-white transition-colors" href="#">Privacy Policy</a>
+                <a class="font-body-md text-muted-text hover:text-pearl-white transition-colors" href="#">Terms of Service</a>
+                <a class="font-body-md text-muted-text hover:text-pearl-white transition-colors" href="#">Contact Us</a>
+                <a class="font-body-md text-muted-text hover:text-pearl-white transition-colors" href="#">Careers</a>
+            </div>
+            <p class="font-body-md text-on-surface-variant max-w-lg mb-8 italic">"Hey, Still starving for Biriyani? Let's break it!"</p>
+            <div class="flex gap-10 mb-8">
+                <a class="text-saffron-gold font-label-caps text-xs" href="tel:+919633332856">P: 96333 32856</a>
+                <a class="text-saffron-gold font-label-caps text-xs" href="tel:+919633272857">A: 96332 72857</a>
+                <a class="text-saffron-gold font-label-caps text-xs" href="tel:+919633303408">C: 96333 03408</a>
+            </div>
+            <p class="font-body-md text-muted-text text-sm">© 2024 Kaiz Kitchen. Thrissur's Biriyani Institution.</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform" href="https://wa.me/917907267371" target="_blank">
+        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.66.986 3.292 1.48 4.961 1.48 5.384 0 9.75-4.372 9.752-9.756.002-2.607-1.012-5.059-2.859-6.907C16.599 2.124 14.137.893 11.53.893 6.152.893 1.782 5.266 1.78 10.652c-.001 1.77.462 3.498 1.402 5.078l-.361 1.321 1.348-.353 3.878 1.456zM17.13 14.86c-.29-.145-1.72-.85-1.985-.947-.268-.098-.463-.146-.659.145-.195.29-.757.947-.927 1.14-.17.194-.34.217-.63.072-.29-.145-1.226-.452-2.335-1.44-.863-.77-1.446-1.722-1.616-2.013-.17-.29-.018-.447.127-.59.13-.13.29-.34.435-.51.145-.17.193-.29.29-.485.097-.193.048-.363-.024-.51-.07-.145-.658-1.586-.902-2.17-.238-.574-.48-.495-.659-.504-.17-.008-.364-.01-.557-.01-.193 0-.507.072-.772.36-.265.29-1.01 1.01-1.01 2.458 0 1.448 1.054 2.85 1.198 3.04.145.195 2.076 3.17 5.028 4.444.702.302 1.25.483 1.677.619.706.224 1.348.193 1.856.117.564-.084 1.72-.702 1.962-1.38.242-.678.242-1.258.17-1.38-.072-.12-.268-.194-.558-.34z"/>
+        </svg>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        // Toggle mobile menu
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+        if (menuBtn && mobileNav) {
+            menuBtn.addEventListener('click', () => {
+                mobileNav.classList.toggle('hidden');
+                mobileNav.classList.toggle('flex');
+            });
+        }
+
+        // Navigation scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('top-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.scroll-reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Floating particles generator
+        (function() {
+            const container = document.getElementById('particle-container');
+            if (!container) return;
+
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'gold-dust';
+                
+                // Random size
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random horizontal start
+                particle.style.left = `${Math.random() * 100}vw`;
+                
+                // Random duration
+                const duration = Math.random() * 8 + 12;
+                particle.style.animation = `riseUp ${duration}s linear infinite`;
+                
+                // Random delay
+                particle.style.animationDelay = `${Math.random() * -5}s`;
+                
+                container.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, duration * 1000);
+            }
+
+            // Initial batch
+            for (let i = 0; i < 35; i++) {
+                createParticle();
+            }
+            
+            // Continuous spawning
+            setInterval(createParticle, 500);
+        })();
+
+        // WebGL Liquid Gold Shader
+        (function() {
+            const canvas = document.getElementById('shader-bg');
+            if (!canvas) return;
+
+            function syncSize() {
+                const w = window.innerWidth;
+                const h = window.innerHeight;
+                if (canvas.width !== w || canvas.height !== h) {
+                    canvas.width  = w;
+                    canvas.height = h;
+                }
+            }
+            window.addEventListener('resize', syncSize);
+            syncSize();
+
+            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            if (!gl) return;
+            
+            const vs = `attribute vec2 a_position;
+            varying vec2 v_texCoord;
+            void main() {
+                v_texCoord = a_position * 0.5 + 0.5;
+                gl_Position = vec4(a_position, 0.0, 1.0);
+            }`;
+            
+            const fs = `precision highp float;
+            uniform float u_time;
+            uniform vec2 u_resolution;
+            uniform vec2 u_mouse;
+            varying vec2 v_texCoord;
+
+            void main() {
+                vec2 uv = v_texCoord;
+                
+                // Create a slow-moving organic liquid effect
+                float time = u_time * 0.15;
+                
+                // Wave pattern for the "liquid gold"
+                float wave1 = sin(uv.x * 10.0 + time + sin(uv.y * 5.0 + time));
+                float wave2 = cos(uv.y * 8.0 - time + cos(uv.x * 4.0 - time));
+                float intensity = (wave1 + wave2) * 0.5 + 0.5;
+                
+                // Saffron Gold (#f5c107) base
+                vec3 goldColor = vec3(0.96, 0.75, 0.03);
+                // Darker Obsidian (#0d0d0d) base
+                vec3 obsidian = vec3(0.05, 0.05, 0.05);
+                
+                // Mix based on waves, keep it very subtle and deep
+                vec3 color = mix(obsidian, goldColor * 0.15, intensity * 0.4);
+                
+                // Add a slight "glow" based on mouse position
+                vec2 m = u_mouse / u_resolution;
+                float dist = distance(uv, m);
+                float glow = smoothstep(0.3, 0.0, dist) * 0.05;
+                color += goldColor * glow;
+
+                gl_FragColor = vec4(color, 1.0);
+            }`;
+
+            function cs(type, src) {
+                const s = gl.createShader(type);
+                gl.shaderSource(s, src);
+                gl.compileShader(s);
+                return s;
+            }
+            
+            const prog = gl.createProgram();
+            gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+            gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+            gl.linkProgram(prog);
+            gl.useProgram(prog);
+            
+            const buf = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+            
+            const pos = gl.getAttribLocation(prog, 'a_position');
+            gl.enableVertexAttribArray(pos);
+            gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+            
+            const uTime = gl.getUniformLocation(prog, 'u_time');
+            const uRes = gl.getUniformLocation(prog, 'u_resolution');
+            const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+            let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+            window.addEventListener('mousemove', (event) => {
+                const rect = canvas.getBoundingClientRect();
+                if (rect.width && rect.height) {
+                    const nx = (event.clientX - rect.left) / rect.width;
+                    const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+                    mouse.x = nx * canvas.width;
+                    mouse.y = ny * canvas.height;
+                }
+            });
+
+            function render(t) {
+                gl.viewport(0, 0, canvas.width, canvas.height);
+                if (uTime) gl.uniform1f(uTime, t * 0.001);
+                if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+                if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+                gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+                requestAnimationFrame(render);
+            }
+            render(0);
+        })();
+
+        // Catering form submission via WhatsApp
+        const cateringForm = document.getElementById('catering-form');
+        if (cateringForm) {
+            cateringForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('catering-name').value || 'Guest';
+                const phone = document.getElementById('catering-phone').value || 'N/A';
+                const eventType = document.getElementById('catering-event-type').value || 'Wedding';
+                const guestCount = document.getElementById('catering-guests').value || 'N/A';
+                const date = document.getElementById('catering-date').value || 'N/A';
+                const notes = document.getElementById('catering-notes').value || 'None';
+
+                const formattedMessage = `Hello Kaiz Kitchen! I would like to make a Catering Inquiry:\n\n` +
+                                         `*Catering Inquiry Details:*\n` +
+                                         `--------------------------\n` +
+                                         `- Name: ${name}\n` +
+                                         `- Phone: ${phone}\n` +
+                                         `- Event Type: ${eventType}\n` +
+                                         `- Guest Count: ${guestCount}\n` +
+                                         `- Date of Event: ${date}\n` +
+                                         `- Additional Notes: ${notes}`;
+
+                const whatsappUrl = `https://wa.me/917907267371?text=${encodeURIComponent(formattedMessage)}`;
+                
+                const container = cateringForm.parentElement;
+                container.innerHTML = `
+                    <div class="flex flex-col items-center justify-center py-20 text-center animate-pulse">
+                        <span class="material-symbols-outlined text-saffron-gold text-6xl mb-6">verified</span>
+                        <h2 class="font-headline-sm text-pearl-white mb-4">Redirecting to WhatsApp...</h2>
+                        <p class="text-muted-text font-body-md max-w-sm">Please send the pre-filled message on WhatsApp to complete your catering inquiry. If it doesn't open automatically, click the button below.</p>
+                        <a href="${whatsappUrl}" target="_blank" class="mt-8 bg-saffron-gold text-obsidian px-8 py-3 font-label-caps text-xs font-bold shadow-[0_0_15px_rgba(245,193,7,0.3)]">SEND MANUALLY</a>
+                        <button onclick="location.reload()" class="mt-8 text-saffron-gold underline font-label-caps text-xs block">BACK TO FORM</button>
+                    </div>
+                `;
+                
+                window.location.href = whatsappUrl;
+            });
+        }
+    </script>
+
+</body>
+</html>
