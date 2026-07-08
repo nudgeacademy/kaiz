@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SYSTEM ALERT</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #000;
+    color: #0f0;
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+    height: 100vh;
+    cursor: default;
+  }
+  .scanline {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0,255,0,0.03),
+      rgba(0,255,0,0.03) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    pointer-events: none;
+    z-index: 10;
+  }
+  .container {
+    padding: 40px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .glitch {
+    font-size: 4rem;
+    font-weight: bold;
+    color: red;
+    text-shadow: 3px 3px 0 #0f0, -3px -3px 0 #00f;
+    animation: shake 0.15s infinite;
+    letter-spacing: 4px;
+  }
+  @keyframes shake {
+    0% { transform: translate(0,0); }
+    25% { transform: translate(2px,-2px); }
+    50% { transform: translate(-2px,2px); }
+    75% { transform: translate(2px,2px); }
+    100% { transform: translate(0,0); }
+  }
+  .log {
+    margin-top: 30px;
+    font-size: 1.1rem;
+    text-align: left;
+    max-width: 700px;
+    line-height: 1.8;
+  }
+  .log span { display: block; opacity: 0; animation: fadeIn 0.4s forwards; }
+  @keyframes fadeIn { to { opacity: 1; } }
+  .progress {
+    margin-top: 30px;
+    width: 500px;
+    max-width: 80vw;
+    height: 25px;
+    border: 2px solid #0f0;
+  }
+  .bar {
+    height: 100%;
+    width: 0%;
+    background: repeating-linear-gradient(45deg, #0f0, #0f0 10px, #003300 10px, #003300 20px);
+    animation: fill 6s ease-in-out forwards;
+  }
+  @keyframes fill { to { width: 100%; } }
+  .footer {
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: #888;
+    max-width: 600px;
+  }
+  .btn {
+    margin-top: 25px;
+    padding: 12px 24px;
+    background: #0f0;
+    color: #000;
+    border: none;
+    font-weight: bold;
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  .btn:hover { background: #0c0; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+
+<div class="scanline"></div>
+<div class="container">
+  <div class="glitch">⚠ SYSTEM COMPROMISED ⚠</div>
+
+  <div class="log" id="log"></div>
+
+  <div class="progress"><div class="bar"></div></div>
+
+  <div class="footer" id="footer"></div>
+
+  <button class="btn hidden" id="revealBtn" onclick="reveal()">CLICK TO STOP THE HACK</button>
+</div>
+
+<script>
+const lines = [
+  "> Device detected: iPhone 12 (Definitely Not Yours)",
+  "> Connecting to Instagram... @your_secret_finsta",
+  "> Password extracted: ••••••• (nice try, this is fake)",
+  "> Locating rubber duck collection... FOUND",
+  "> Scanning for embarrassing playlist... DETECTED",
+  "> IQ Level: Potato 🥔",
+  "> Extracting browser history... it's mostly cat videos",
+  "> Uploading selfies to the cloud... just kidding, nobody wants those",
+  "> Detected 1 (one) sense of humor",
+  "> Coffee levels: CRITICALLY LOW",
+  "> Deploying seventeen dancing skeletons 💀💀💀",
+  "> Hacking your snack drawer... access denied, too many crumbs",
+  "> Installing more RAM (please wait)...",
+  "> Just kidding. You've been PRANKED 😄"
+];
+
+const logEl = document.getElementById('log');
+let i = 0;
+
+function addLine() {
+  if (i < lines.length) {
+    const span = document.createElement('span');
+    span.textContent = lines[i];
+    span.style.animationDelay = '0s';
+    logEl.appendChild(span);
+    i++;
+    setTimeout(addLine, 550);
+  } else {
+    setTimeout(showReveal, 800);
+  }
+}
+
+function showReveal() {
+  document.getElementById('revealBtn').classList.remove('hidden');
+}
+
+function reveal() {
+  document.querySelector('.glitch').textContent = "😄 JUST A PRANK 😄";
+  document.querySelector('.glitch').style.color = '#0f0';
+  document.querySelector('.glitch').style.animation = 'none';
+  document.querySelector('.glitch').style.textShadow = 'none';
+  document.getElementById('footer').textContent =
+    "No data was harmed in the making of this prank. Go high-five whoever sent you this.";
+  document.getElementById('revealBtn').classList.add('hidden');
+}
+
+setTimeout(addLine, 600);
+</script>
+
+</body>
+</html>
